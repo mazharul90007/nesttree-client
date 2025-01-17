@@ -112,7 +112,7 @@ const Login = () => {
                     <p className="text-center text-sm text-gray-500 mt-6">
                         Don’t have an account?{" "}
                         <Link
-                            to={'/registration'}
+                            to={'/signUp'}
                             className="text-blue-600 font-medium underline hover:text-blue-700"
                         >
                             Sign up

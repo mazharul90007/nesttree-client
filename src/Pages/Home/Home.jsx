@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet-async";
+import Banner from "../../Components/Banner/Banner";
+import LatestProperties from "./LatestProperies/LatestProperties";
 
 
 
@@ -8,8 +10,8 @@ const Home = () => {
             <Helmet>
                 <title>NestTree || Home</title>
             </Helmet>
-            <h2 className="text-3xl">This is Home</h2>
-            <button className="btn btn-primary">Home</button>
+            <Banner></Banner>
+            <LatestProperties></LatestProperties>
         </div>
     );
 };

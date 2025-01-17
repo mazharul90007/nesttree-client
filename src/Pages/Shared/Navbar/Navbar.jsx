@@ -17,18 +17,18 @@ const Navbar = () => {
     }
 
     const links = <>
-        <NavLink className={({ isActive }) => isActive ? 'text-green-600 font-bold underline' : 'hover:text-green-600 hover:font-bold'} to={'/'}><li>Home</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/'}><li>Home</li></NavLink>
         {
             user?.email && <>
-                <NavLink className={({ isActive }) => isActive ? 'text-green-600 font-bold underline' : 'hover:text-green-600 hover:font-bold'} to={'/allProperties'}><li>All Properties</li></NavLink>
+                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/allProperties'}><li>All Properties</li></NavLink>
 
-                <NavLink className={({ isActive }) => isActive ? 'text-green-600 font-bold underline' : 'hover:text-green-600 hover:font-bold'} to={'/dashboard'}><li>Dashboard</li></NavLink>
+                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/dashboard'}><li>Dashboard</li></NavLink>
             </>
         }
-        <NavLink className={({ isActive }) => isActive ? 'text-green-600 font-bold underline' : 'hover:text-green-600 hover:font-bold'} to={'/contact'}><li>Contact Us</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/contact'}><li>Contact Us</li></NavLink>
     </>
     return (
-        <div className="bg-green-100 shadow w-full">
+        <div className="w-full absolute z-50 backdrop-blur-sm bg-white/10">
             <div className="w-11/12 mx-auto navbar">
                 <div className="navbar-start">
                     <div className="dropdown">

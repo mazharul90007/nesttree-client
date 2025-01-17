@@ -1,4 +1,5 @@
-import daisyui from 'daisyui'
+import daisyui from 'daisyui';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -6,8 +7,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#E94D22", // Your custom primary color
+        secondary: "#9333EA", // Your custom secondary color
+      },
+    },
   },
   plugins: [daisyui],
-}
-
+};

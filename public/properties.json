@@ -1,0 +1,83 @@
+[
+    {
+      "image": "https://i.ibb.co.com/8xHPjNS/acer-1.png",
+      "price": 1200,
+      "bedrooms": 3,
+      "drawing_room": true,
+      "dining_room": true,
+      "parking": 2,
+      "bathrooms": 2,
+      "others": {
+        "balcony": true,
+        "garden": false,
+        "furnished": true
+      },
+      "address": "123 Maple Street, Newcastle, NSW",
+      "description": "A cozy 3-bedroom house with a spacious living room and modern kitchen. Perfect for small families."
+    },
+    {
+      "image": "https://i.ibb.co.com/Qv8TrpJ/huawei-1.png",
+      "price": 950,
+      "bedrooms": 2,
+      "drawing_room": true,
+      "dining_room": false,
+      "parking": 1,
+      "bathrooms": 1,
+      "others": {
+        "balcony": true,
+        "garden": true,
+        "furnished": false
+      },
+      "address": "45 Oak Avenue, Newcastle, NSW",
+      "description": "A charming 2-bedroom flat with a balcony and garden view. Ideal for couples or young professionals."
+    },
+    {
+      "image": "https://i.ibb.co.com/31xbmq9/hp-1.jpg",
+      "price": 2500,
+      "bedrooms": 4,
+      "drawing_room": true,
+      "dining_room": true,
+      "parking": 3,
+      "bathrooms": 3,
+      "others": {
+        "balcony": true,
+        "garden": true,
+        "furnished": true
+      },
+      "address": "89 Rose Garden Lane, Newcastle, NSW",
+      "description": "A luxurious 4-bedroom house with a beautiful garden and large parking space. Perfect for families."
+    },
+    {
+      "image": "https://i.ibb.co.com/KX778yN/fitbit-1.jpg",
+      "price": 800,
+      "bedrooms": 1,
+      "drawing_room": false,
+      "dining_room": false,
+      "parking": 0,
+      "bathrooms": 1,
+      "others": {
+        "balcony": false,
+        "garden": false,
+        "furnished": true
+      },
+      "address": "78 Pine Road, Newcastle, NSW",
+      "description": "A small and affordable 1-bedroom flat in the heart of the city. Ideal for singles or students."
+    },
+    {
+      "image": "https://i.ibb.co.com/QMZxQFx/samsung-1.jpg",
+      "price": 1500,
+      "bedrooms": 3,
+      "drawing_room": true,
+      "dining_room": true,
+      "parking": 2,
+      "bathrooms": 2,
+      "others": {
+        "balcony": true,
+        "garden": true,
+        "furnished": false
+      },
+      "address": "56 Sunset Boulevard, Newcastle, NSW",
+      "description": "A spacious 3-bedroom apartment with a beautiful sunset view and access to a private garden."
+    }
+  ]
+  
