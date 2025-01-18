@@ -4,9 +4,9 @@ import useAuth from "../../../Hooks/useAuth";
 
 const Navbar = () => {
 
-    const { user, logout, setUser } = useAuth()
+    const { user, logOut, setUser } = useAuth()
     const handleLogOut = () => {
-        logout()
+        logOut()
             .then(() => {
                 setUser(null);
 
@@ -75,8 +75,8 @@ const Navbar = () => {
                         </div>
                             :
                             <div className="flex gap-4 items-center">
-                                <Link to={'/registration'}><button className="underline">Register</button></Link>
-                                <Link to={'/login'}><button className="btn btn-primary">Sign in</button></Link>
+                                <Link to={'/signUp'}><button className="py-1 px-2 border border-primary rounded-full text-primary font-semibold">Register</button></Link>
+                                <Link to={'/login'}><button className="py-1 px-2 border border-primary font-semibold text-white rounded-full bg-primary">Sign in</button></Link>
                             </div>
                     }
 

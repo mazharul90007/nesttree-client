@@ -1,5 +1,5 @@
 import banner from '../../assets/Banner/banner.jpg'
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBed, FaBath, FaCarAlt } from "react-icons/fa";
 import useProperties from '../../Hooks/useProperties';
 
 const AllProperties = () => {
@@ -26,6 +26,57 @@ const AllProperties = () => {
                             </label>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className='grid md:grid-cols-12'>
+
+                {/* Property Cards */}
+                <div className='md:col-span-8 flex flex-col gap-4'>
+                    {
+                        properties.map(property =>
+                            <div key={property._id} className="bg-base-100 rounded-lg shadow p-4 flex flex-col md:flex-row gap-4 items-center w-full">
+                                {/* Image Section */}
+                                <div>
+                                    <img
+                                        src={property.image}
+                                        alt="Property"
+                                        className="h-40 w-60 rounded-lg object-cover"
+                                    />
+                                </div>
+
+                                {/* Content Section */}
+                                <div>
+                                    <h3 className="text-lg font-bold">$1300 <span className="text-sm font-medium">Unit</span></h3>
+                                    <p className="text-sm text-gray-500">17/1 King Street, Newcastle NSW 2300</p>
+                                    <div className="flex gap-4 mt-3">
+                                        <div className="flex items-center gap-1 text-sm">
+                                            <FaBed /> 3 beds
+                                        </div>
+                                        <div className="flex items-center gap-1 text-sm">
+                                            <FaBath /> 2 baths
+                                        </div>
+                                        <div className="flex items-center gap-1 text-sm">
+                                            <FaCarAlt /> 2 spaces
+                                        </div>
+                                    </div>
+                                    <div className="mt-2 flex gap-2">
+                                        <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
+                                            New
+                                        </span>
+                                        <span className="bg-purple-300 text-purple-700 text-xs font-semibold px-2 py-1 rounded">
+                                            NBN
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+
+                {/* Ad Section */}
+                <div className='md:col-span-4'>
+
                 </div>
             </div>
         </div>

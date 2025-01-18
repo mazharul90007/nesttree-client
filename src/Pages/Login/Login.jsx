@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
 
-    const { googleSignUp, login } = useAuth();
+    const { googleSignUp, signIn } = useAuth();
 
     const handleGoogleSignUp = () => {
         googleSignUp()
@@ -32,7 +32,7 @@ const Login = () => {
         // const user = {email, password}
         // console.log(user);
 
-        login(email, password)
+        signIn(email, password)
             .then(() => {
                 navigate(from)
             })

@@ -1,17 +1,17 @@
 import { FaGoogle } from "react-icons/fa";
-import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 
 const SocialLogin = () => {
-    const { googleSignIn } = useAuth();
+    const { googleSignUp } = useAuth();
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
 
 
-    const handleGoogleSignIn = ()=>{
-        googleSignIn()
+    const handleGoogleSignUp = ()=>{
+        googleSignUp()
         .then(result =>{
             console.log(result.user)
             const userInfo = {
@@ -33,7 +33,7 @@ const SocialLogin = () => {
     return (
         <div>
             <div>
-                <button onClick={handleGoogleSignIn} className="btn w-full">
+                <button onClick={handleGoogleSignUp} className="btn w-full">
                     <FaGoogle></FaGoogle>
                     Google
                 </button>

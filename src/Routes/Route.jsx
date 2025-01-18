@@ -4,8 +4,9 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllProperties from "../Pages/AllProperties/AllProperties";
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import Dashboard from "../Layout/Dashboard";
 import Error from "../Pages/Error/Error";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -29,12 +30,19 @@ const router = createBrowserRouter([
           path: 'allProperties',
           element: <AllProperties></AllProperties>
         },
-        {
-          path: 'dashboard',
-          element: <Dashboard></Dashboard>
-        }
+        
       ]
     },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: 'users',
+          element: <AllUsers></AllUsers>
+        }
+      ]
+    }
   ]);
 
   export default router;

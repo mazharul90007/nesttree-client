@@ -10,7 +10,9 @@ const Home = () => {
             <Helmet>
                 <title>NestTree || Home</title>
             </Helmet>
-            <Banner></Banner>
+            <div className="">
+                <Banner></Banner>
+            </div>
             <LatestProperties></LatestProperties>
         </div>
     );
