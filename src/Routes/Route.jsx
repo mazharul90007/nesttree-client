@@ -7,6 +7,8 @@ import AllProperties from "../Pages/AllProperties/AllProperties";
 import Dashboard from "../Layout/Dashboard";
 import Error from "../Pages/Error/Error";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import Profile from "../Components/Profile/Profile";
+import AddProperty from "../Pages/Dashboard/AddProperty/AddProperty";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +42,21 @@ const router = createBrowserRouter([
         {
           path: 'users',
           element: <AllUsers></AllUsers>
-        }
+        },
+        //Agent Dashboard
+        {
+          path: 'agentProfile',
+          element: <Profile></Profile>
+        },
+        {
+          path: 'addProperty',
+          element: <AddProperty></AddProperty>
+        },
+        //Admin Dashboard
+        {
+          path: 'adminProfile',
+          element: <Profile></Profile>
+        },
       ]
     }
   ]);

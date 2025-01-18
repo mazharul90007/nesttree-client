@@ -1,7 +1,9 @@
-import { FaBook, FaCalendarAlt, FaHome, FaList, FaListAlt, FaShoppingBag, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
+import { FaCalendarAlt, FaHome, FaList, FaShoppingCart, FaUsers, FaWallet } from "react-icons/fa";
+import { TbHomePlus } from "react-icons/tb";
+import { IoPerson } from "react-icons/io5";
+import { HiCurrencyDollar } from "react-icons/hi";
+import { FaHouseCircleExclamation } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
-import { GoCodeReview } from "react-icons/go";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdMail } from "react-icons/io";
 import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
@@ -17,65 +19,57 @@ const Dashboard = () => {
         <div className="flex">
             {/* Dashboard SideBar */}
             <div className="w-64 min-h-screen bg-orange-200">
-                <ul className="menu p-4 space-y-4">
+                <ul className="menu space-y-4 text-md font-semibold">
                     {
                         isAdmin ? <>
                             <li>
-                                <NavLink to={'/dashboard/adminHome'}><FaHome></FaHome> Admin Home</NavLink>
+                                <NavLink to={'/dashboard/adminProfile'}><IoPerson /> Admin Profile</NavLink>
                             </li>
                             <li>
-                                <NavLink to={'/dashboard/addItems'}><FaUtensils /> Add Items</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/dashboard/manageItems'}><FaList /> Manage Items</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/dashboard/bookings'}><FaBook />Manage Bookings</NavLink>
+                                <NavLink to={'/dashboard/addItems'}><FaHome></FaHome> Manage Properties</NavLink>
                             </li>
                             <li>
                                 <NavLink to={'/dashboard/users'}><FaUsers />
-                                    All Users</NavLink>
+                                    Manage Users</NavLink>
                             </li>
+                            <li>
+                                <NavLink to={'/dashboard/manageItems'}><FaList /> Manage Reviews</NavLink>
+                            </li>
+                            
                         </>
                             :
                             isAgent ?
                                 <>
                                     <li>
-                                        <NavLink to={'/dashboard/agentProfile'}><FaHome></FaHome> Agent Profile</NavLink>
+                                        <NavLink to={'/dashboard/agentProfile'}><IoPerson /> Agent Profile</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={'/dashboard/addItems'}><FaUtensils /> Add Property</NavLink>
+                                        <NavLink to={'/dashboard/addProperty'}><TbHomePlus /> Add Property</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to={'/dashboard/addedProperties'}><FaList /> My added Properties</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={'/dashboard/soldProperties'}><FaBook />My Sold Properties</NavLink>
+                                        <NavLink to={'/dashboard/soldProperties'}><HiCurrencyDollar />My Sold Properties</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={'/dashboard/requestedProperties'}><FaUsers />
+                                        <NavLink to={'/dashboard/requestedProperties'}><FaHouseCircleExclamation />
                                             Requested Properties</NavLink>
                                     </li>
                                 </>
                                 :
                                 <>
                                     <li>
-                                        <NavLink to={'/dashboard/userHome'}><FaHome></FaHome> User Home</NavLink>
+                                        <NavLink to={'/dashboard/userProfile'}><IoPerson /> My Profile</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={'/dashboard/reservation'}><FaCalendarAlt /> Reservation</NavLink>
+                                        <NavLink to={'/dashboard/wishlist'}><FaCalendarAlt /> Wishlist</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={'/dashboard/paymentHistory'}><FaWallet /> Payment History</NavLink>
+                                        <NavLink to={'/dashboard/propertyBought'}><FaWallet /> Property Bought</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={'/dashboard/cart'}><FaShoppingCart />  My Cart</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to={'/dashboard/review'}><GoCodeReview />  Add Review</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to={'/dashboard/mybookings'}><FaListAlt />  My Bookings</NavLink>
+                                        <NavLink to={'/dashboard/myReview'}><FaShoppingCart />  My Review</NavLink>
                                     </li>
                                 </>
                     }
@@ -86,14 +80,8 @@ const Dashboard = () => {
                         <NavLink to={'/'}><FaHome></FaHome>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/menu'}><GiHamburgerMenu />Menu</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={'/shop'}><FaShoppingBag />Shop</NavLink>
-                    </li>
-                    <li>
                         <NavLink to={'/contact'}><IoMdMail />
-                            Contact</NavLink>
+                            Support</NavLink>
                     </li>
                 </ul>
             </div>
