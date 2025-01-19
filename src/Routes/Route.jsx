@@ -9,6 +9,7 @@ import Error from "../Pages/Error/Error";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Profile from "../Components/Profile/Profile";
 import AddProperty from "../Pages/Dashboard/AddProperty/AddProperty";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -39,10 +40,7 @@ const router = createBrowserRouter([
       path: '/dashboard',
       element: <Dashboard></Dashboard>,
       children: [
-        {
-          path: 'users',
-          element: <AllUsers></AllUsers>
-        },
+        
         //Agent Dashboard
         {
           path: 'agentProfile',
@@ -55,7 +53,11 @@ const router = createBrowserRouter([
         //Admin Dashboard
         {
           path: 'adminProfile',
-          element: <Profile></Profile>
+          element: <AdminRoute><Profile></Profile></AdminRoute>
+        },
+        {
+          path: 'users',
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         },
       ]
     }
