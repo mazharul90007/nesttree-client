@@ -10,6 +10,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Profile from "../Components/Profile/Profile";
 import AddProperty from "../Pages/Dashboard/AddProperty/AddProperty";
 import AdminRoute from "./AdminRoute";
+import MyAddedProperties from "../Pages/Dashboard/MyAddedProperties/MyAddedProperties";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         {
           path: 'addProperty',
           element: <AddProperty></AddProperty>
+        },
+        {
+          path: 'addedProperties',
+          element: <MyAddedProperties></MyAddedProperties>
         },
         //Admin Dashboard
         {

@@ -44,7 +44,7 @@ const AddProperty = () => {
                 propertyDetails: data.propertyDetails,
                 agentName: user?.displayName,
                 agentEmail: user?.email,
-                status: 'Pending'
+                status: 'pending'
             }
             //
             const propertyRes = await axiosSecure.post('/properties', propertyInfo);

@@ -37,11 +37,11 @@ const AllProperties = () => {
                         properties.map(property =>
                             <div key={property._id} className="bg-base-100 rounded-lg shadow p-4 flex flex-col md:flex-row gap-4 items-center w-full">
                                 {/* Image Section */}
-                                <div>
+                                <div className=''>
                                     <img
                                         src={property.image}
                                         alt="Property"
-                                        className="h-40 w-60 rounded-lg object-cover"
+                                        className="h-40 w-60 rounded-lg"
                                     />
                                 </div>
 
