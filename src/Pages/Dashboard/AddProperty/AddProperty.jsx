@@ -44,6 +44,7 @@ const AddProperty = () => {
                 propertyDetails: data.propertyDetails,
                 agentName: user?.displayName,
                 agentEmail: user?.email,
+                agentImage: user?.photoURL,
                 status: 'pending'
             }
             //

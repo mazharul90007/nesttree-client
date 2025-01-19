@@ -6,6 +6,7 @@ import { TbCoinTaka } from "react-icons/tb";
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const MyAddedProperties = () => {
@@ -46,7 +47,6 @@ const MyAddedProperties = () => {
                             });
                         }
                     })
-
             }
         });
     }
@@ -114,20 +114,22 @@ const MyAddedProperties = () => {
 
                                     </div>
                                     <div className="flex items-center gap-3 text-2xl">
-                                        <span className={`border p-1 rounded-full shadow-md cursor-pointer ${property?.status === 'rejected'
+                                        <Link to={`/dashboard/updateProperty/${property._id}`}>
+                                            <div className={`border p-1 rounded-full shadow-md cursor-pointer ${property?.status === 'rejected'
                                                 ? 'border-gray-400 text-gray-400 cursor-not-allowed'
                                                 : 'border-green-600 text-green-600'
-                                            }`}
-                                            title={
-                                                property?.status === 'rejected'
-                                                    ? 'Cannot edit rejected properties'
-                                                    : 'Edit'
-                                            }
-                                            style={{
-                                                pointerEvents: property?.status === 'rejected' ? 'none' : 'auto',
-                                            }}><MdModeEdit /></span>
+                                                }`}
+                                                title={
+                                                    property?.status === 'rejected'
+                                                        ? 'Cannot edit rejected properties'
+                                                        : 'Edit'
+                                                }
+                                                style={{
+                                                    pointerEvents: property?.status === 'rejected' ? 'none' : 'auto',
+                                                }}><MdModeEdit /></div>
+                                        </Link>
 
-                                        <span onClick={()=> handleDeleteProperty(property)} className="border border-red-600 p-1 rounded-full text-red-600 shadow-md cursor-pointer"><MdDelete /></span>
+                                        <div onClick={() => handleDeleteProperty(property)} className="border border-red-600 p-1 rounded-full text-red-600 shadow-md cursor-pointer"><MdDelete /></div>
                                     </div>
                                 </div>
                             </div>

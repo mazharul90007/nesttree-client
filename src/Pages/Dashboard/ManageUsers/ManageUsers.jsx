@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
 
-const AllUsers = () => {
+const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
+    const { user: currentUser } = useAuth();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -12,6 +14,7 @@ const AllUsers = () => {
             return res.data;
         }
     })
+    console.log(currentUser)
 
     // Make User Admin
     const handleMakeAdmin = (user) => {
@@ -118,15 +121,40 @@ const AllUsers = () => {
                                         </td>
                                         <td>
                                             <div className="flex flex-col gap-2">
-                                                <button onClick={() => handleMakeAdmin(user)} className=" border border-red-400 p-1 rounded-md bg-green-200 text-red-600 text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow">Admin</button>
+                                                <button
+                                                    onClick={() => handleMakeAdmin(user)}
+                                                    className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
+                                                    ${currentUser.email === user.email ?
+                                                            'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-green-200 text-red-600'}`}
+                                                    disabled={currentUser.email === user.email}
+                                                >
+                                                    Admin
+                                                </button>
 
-                                                <button onClick={() => handleMakeAgent(user)} className=" border border-green-400 p-1 rounded-md bg-orange-200 text-red-600 text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow">Agent</button>
+                                                <button
+                                                    onClick={() => handleMakeAgent(user)}
+                                                    className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
+                                                    ${currentUser.email === user.email ?
+                                                            'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-orange-200 text-red-600'}`}
+                                                    disabled={currentUser.email === user.email}
+                                                >
+                                                    Agent
+                                                </button>
                                             </div>
+                                        </td>
 
-                                        </td>
                                         <td>
-                                            <button onClick={() => handleDeleteUser(user)} className="btn bg-red-600 text-white  text-xl"><MdDelete /></button>
+                                            <button
+                                                onClick={() => handleDeleteUser(user)}
+                                                className={`btn text-xl 
+                                                ${currentUser.email === user.email ?
+                                                        'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-red-600 text-white'}`}
+                                                disabled={currentUser.email === user.email}
+                                            >
+                                                <MdDelete />
+                                            </button>
                                         </td>
+
                                     </tr>)
                             }
 
@@ -138,4 +166,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default ManageUsers;

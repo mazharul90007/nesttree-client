@@ -6,11 +6,14 @@ import SignUp from "../Pages/SignUp/SignUp";
 import AllProperties from "../Pages/AllProperties/AllProperties";
 import Dashboard from "../Layout/Dashboard";
 import Error from "../Pages/Error/Error";
-import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Profile from "../Components/Profile/Profile";
 import AddProperty from "../Pages/Dashboard/AddProperty/AddProperty";
 import AdminRoute from "./AdminRoute";
 import MyAddedProperties from "../Pages/Dashboard/MyAddedProperties/MyAddedProperties";
+import UpdateProperty from "../Pages/Dashboard/updateProperty/updateProperty";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import ManageProperties from "../Pages/Dashboard/ManageProperties/ManageProperties";
+
 
 const router = createBrowserRouter([
     {
@@ -55,6 +58,11 @@ const router = createBrowserRouter([
           path: 'addedProperties',
           element: <MyAddedProperties></MyAddedProperties>
         },
+        {
+          path: 'updateProperty/:id',
+          element: <UpdateProperty></UpdateProperty>,
+          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+        },
         //Admin Dashboard
         {
           path: 'adminProfile',
@@ -62,8 +70,12 @@ const router = createBrowserRouter([
         },
         {
           path: 'users',
-          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+          element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
         },
+        {
+          path: 'manageProperties',
+          element: <ManageProperties></ManageProperties>
+        }
       ]
     }
   ]);

@@ -26,14 +26,14 @@ const Dashboard = () => {
                                 <NavLink to={'/dashboard/adminProfile'}><IoPerson /> Admin Profile</NavLink>
                             </li>
                             <li>
-                                <NavLink to={'/dashboard/addItems'}><FaHome></FaHome> Manage Properties</NavLink>
+                                <NavLink to={'/dashboard/manageProperties'}><FaHome></FaHome> Manage Properties</NavLink>
                             </li>
                             <li>
                                 <NavLink to={'/dashboard/users'}><FaUsers />
                                     Manage Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to={'/dashboard/manageItems'}><FaList /> Manage Reviews</NavLink>
+                                <NavLink to={'/dashboard/manageReviews'}><FaList /> Manage Reviews</NavLink>
                             </li>
                             
                         </>
