@@ -1,9 +1,13 @@
 import banner from '../../assets/Banner/banner.jpg'
 import { FaSearch, FaBed, FaBath, FaCarAlt } from "react-icons/fa";
-import useProperties from '../../Hooks/useProperties';
+import useVerifiedProperties from '../../Hooks/useVerifiedProperties';
+import { TbCoinTaka } from 'react-icons/tb';
+import { MdVerifiedUser } from 'react-icons/md';
+import { FaDirections } from "react-icons/fa";
 
 const AllProperties = () => {
-    const [properties] = useProperties();
+    const [verifiedProperties] = useVerifiedProperties();
+
     return (
         <div className="pt-20">
             <div>
@@ -32,11 +36,19 @@ const AllProperties = () => {
             <div className='grid md:grid-cols-12'>
 
                 {/* Property Cards */}
-                <div className='md:col-span-8 flex flex-col gap-4'>
+                <div className='md:col-span-9 flex flex-col gap-4'>
                     {
-                        properties.map(property =>
-                            <div key={property._id} className="bg-base-100 rounded-lg shadow p-4 flex flex-col md:flex-row gap-4 items-center w-full">
+                        verifiedProperties.map(property =>
+                            <div key={property._id} className="bg-base-100 rounded-lg shadow p-4 flex flex-col md:flex-row gap-4 items-center w-full relative">
                                 {/* Image Section */}
+                                <div className='absolute top-2 right-2 text-xl text-green-600'>
+                                    <MdVerifiedUser />
+                                </div>
+
+                                <button className='absolute bottom-2 right-2 text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
+                                Details
+                                </button>
+
                                 <div className=''>
                                     <img
                                         src={property.image}
@@ -46,10 +58,19 @@ const AllProperties = () => {
                                 </div>
 
                                 {/* Content Section */}
-                                <div>
-                                    <h3 className="text-lg font-bold">$1300 <span className="text-sm font-medium">Unit</span></h3>
-                                    <p className="text-sm text-gray-500">17/1 King Street, Newcastle NSW 2300</p>
-                                    <div className="flex gap-4 mt-3">
+                                <div className='space-y-1'>
+                                    <h2 className='text-xl font-semibold'>{property.title} <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
+                                        {property.type}
+                                    </span></h2>
+
+                                    <p className="text-sm text-gray-500">{property.location}</p>
+
+                                    <div className="text-lg font-semibold italic text-gray-500 flex items-center gap-1">
+                                        <TbCoinTaka />
+                                        <p>{property.minPrice} - {property.maxPrice}</p>
+                                    </div>
+
+                                    <div className="flex gap-4 mt-3 text-gray-500">
                                         <div className="flex items-center gap-1 text-sm">
                                             <FaBed /> 3 beds
                                         </div>
@@ -60,13 +81,12 @@ const AllProperties = () => {
                                             <FaCarAlt /> 2 spaces
                                         </div>
                                     </div>
-                                    <div className="mt-2 flex gap-2">
-                                        <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
-                                            New
-                                        </span>
-                                        <span className="bg-purple-300 text-purple-700 text-xs font-semibold px-2 py-1 rounded">
-                                            NBN
-                                        </span>
+                                    <div>
+                                        <p className='text-gray-400 text-xs italic mt-4'>Posted By:</p>
+                                        <div className="flex items-center gap-2">
+                                            <img src={property.agentImage} alt="Agent Image" className='w-8 h-8 rounded-full' />
+                                            <h4 className='text-gray-500 text-sm'>Agent: {property.agentName}</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +95,7 @@ const AllProperties = () => {
                 </div>
 
                 {/* Ad Section */}
-                <div className='md:col-span-4'>
+                <div className='md:col-span-3'>
 
                 </div>
             </div>

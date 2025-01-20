@@ -1,11 +1,11 @@
 import { FaBath, FaBed, FaCar } from "react-icons/fa";
-import useProperties from "../../../Hooks/useProperties";
 import { TbCoinTaka } from "react-icons/tb";
+import useVerifiedProperties from "../../../Hooks/useVerifiedProperties";
 
 
 
 const LatestProperties = () => {
-    const [properties] = useProperties();
+    const [verifiedProperties] = useVerifiedProperties();
 
 
     return (
@@ -13,7 +13,7 @@ const LatestProperties = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {
-                    properties.map((property, index) =>
+                    verifiedProperties.map((property, index) =>
                         <div key={index} className="card card-compact rounded shadow-md">
                             <figure>
                                 <img
