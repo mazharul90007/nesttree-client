@@ -3,7 +3,6 @@ import { FaSearch, FaBed, FaBath, FaCarAlt } from "react-icons/fa";
 import useVerifiedProperties from '../../Hooks/useVerifiedProperties';
 import { TbCoinTaka } from 'react-icons/tb';
 import { MdVerifiedUser } from 'react-icons/md';
-import { FaDirections } from "react-icons/fa";
 
 const AllProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
@@ -46,7 +45,7 @@ const AllProperties = () => {
                                 </div>
 
                                 <button className='absolute bottom-2 right-2 text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
-                                Details
+                                    Details
                                 </button>
 
                                 <div className=''>
