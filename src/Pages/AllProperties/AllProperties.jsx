@@ -32,13 +32,13 @@ const AllProperties = () => {
                 </div>
             </div>
 
-            <div className='grid md:grid-cols-12'>
+            <div className='grid md:grid-cols-12 my-16 w-11/12 mx-auto'>
 
                 {/* Property Cards */}
                 <div className='md:col-span-9 flex flex-col gap-4'>
                     {
                         verifiedProperties.map(property =>
-                            <div key={property._id} className="bg-base-100 rounded-lg shadow p-4 flex flex-col md:flex-row gap-4 items-center w-full relative">
+                            <div key={property._id} className="border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative p-2">
                                 {/* Image Section */}
                                 <div className='absolute top-2 right-2 text-xl text-green-600'>
                                     <MdVerifiedUser />
@@ -52,17 +52,19 @@ const AllProperties = () => {
                                     <img
                                         src={property.image}
                                         alt="Property"
-                                        className="h-40 w-60 rounded-lg"
+                                        className="h-56 w-64 rounded-md"
                                     />
                                 </div>
 
                                 {/* Content Section */}
-                                <div className='space-y-1'>
+                                <div className='space-y-1 p-2'>
                                     <h2 className='text-xl font-semibold'>{property.title} <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
                                         {property.type}
                                     </span></h2>
 
                                     <p className="text-sm text-gray-500">{property.location}</p>
+
+                                    <p className="text-sm text-gray-500 pb-2">District: {property.district}</p>
 
                                     <div className="text-lg font-semibold italic text-gray-500 flex items-center gap-1">
                                         <TbCoinTaka />

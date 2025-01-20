@@ -114,20 +114,13 @@ const MyAddedProperties = () => {
 
                                     </div>
                                     <div className="flex items-center gap-3 text-2xl">
-                                        <Link to={`/dashboard/updateProperty/${property._id}`}>
-                                            <div className={`border p-1 rounded-full shadow-md cursor-pointer ${property?.status === 'rejected'
-                                                ? 'border-gray-400 text-gray-400 cursor-not-allowed'
-                                                : 'border-green-600 text-green-600'
-                                                }`}
-                                                title={
-                                                    property?.status === 'rejected'
-                                                        ? 'Cannot edit rejected properties'
-                                                        : 'Edit'
-                                                }
-                                                style={{
-                                                    pointerEvents: property?.status === 'rejected' ? 'none' : 'auto',
-                                                }}><MdModeEdit /></div>
-                                        </Link>
+                                        {
+                                            property?.status !== 'rejected' && (
+                                                <Link to={`/dashboard/updateProperty/${property._id}`}>
+                                                    <div className={`border p-1 rounded-full shadow-md cursor-pointer text-green-600 border-green-600`}><MdModeEdit /></div>
+                                                </Link>
+                                            )
+                                        }
 
                                         <div onClick={() => handleDeleteProperty(property)} className="border border-red-600 p-1 rounded-full text-red-600 shadow-md cursor-pointer"><MdDelete /></div>
                                     </div>
