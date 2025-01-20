@@ -45,6 +45,12 @@ const router = createBrowserRouter([
       path: '/dashboard',
       element: <Dashboard></Dashboard>,
       children: [
+
+        //User Dashboard
+        {
+          path: 'userProfile',
+          element: <Profile></Profile>
+        },
         
         //Agent Dashboard
         {
