@@ -12,10 +12,20 @@ import { FaRegHeart } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const Details = ({ property }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+
+    //get Reviews
+    const { data: reviews = []} = useQuery({
+        queryKey: ['reviews'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/reviews/${property._id}`);
+            return res.data;
+        }
+    })
 
     const openModal = () => {
         document.getElementById('addReview').showModal()
@@ -34,11 +44,10 @@ const Details = ({ property }) => {
         const reviewerImage = user.photoURL;
         const reviewProperty = property.title;
         const reviewerEmail = user.email;
-
-        const reviewInfo = { review, reviewPropertyId, reviewerName, reviewerImage, reviewProperty, reviewerEmail }
+        const postedTime = Date.now();
+        const reviewInfo = { review, reviewPropertyId, reviewerName, reviewerImage, reviewProperty, reviewerEmail, postedTime }
 
         console.log(reviewInfo);
-        
 
         //Add review to the server
         const propertyRes = await axiosSecure.post('/reviews', reviewInfo);
@@ -59,6 +68,10 @@ const Details = ({ property }) => {
         closeModal();
     };
 
+    const handleAddToWishlist = (property) => {
+        console.log(property)
+    }
+
 
     return (
         <div>
@@ -74,6 +87,7 @@ const Details = ({ property }) => {
                         </div>
                         <div>
                             <button
+                                onClick={() => handleAddToWishlist(property)}
                                 // aria-label="Add to Wishlist"
                                 className="bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100"
                             >
@@ -161,6 +175,26 @@ const Details = ({ property }) => {
                         <button onClick={() => openModal(property)} className='bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100'>
                             Add a Review
                         </button>
+                        {/* Show All Reviews */}
+                        <div className="mt-4">
+                            <p className="mb-3 text-xl italic">Total Review: {reviews.length}</p>
+                            {
+                                reviews.map(review =>
+                                    <div 
+                                    key={review._id}
+                                    className="flex items-center gap-4 mb-2 border-b border-gray-300"
+                                    >
+                                        <div>
+                                            <img src={review.reviewerImage} alt="Reviewer" className="w-10 h-10 rounded" />
+                                            <p>{review.reviewerName}</p>
+                                        </div>
+                                        <div>
+                                            <p>{review.review}</p>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className="col-span-3">
@@ -168,25 +202,25 @@ const Details = ({ property }) => {
                 </div>
             </div>
             {/* Show Modal */}
-            <dialog id="addReview" className="modal" onClick={(e) => {
-                if (e.target.tagName === 'DIALOG') e.target.close();
-            }}>
+            <dialog id="addReview" className="modal" aria-modal="true">
                 <div className="modal-box">
                     <h3 className="font-bold text-xl text-center">Type Your Review</h3>
                     <img src={write} alt="review" className="w-16 h-16 mx-auto" />
-                    <div className="modal-action mt-3 pt-0">
-                        <form onSubmit={handleReview} method="dialog" className="w-full">
-                            <textarea
-                                className="textarea textarea-bordered w-full"
-                                placeholder="Review"
-                                name="review"
-                                required
-                            ></textarea>
-                            <button className="btn">Post</button>
-                        </form>
+                    <form onSubmit={handleReview} method="dialog" className="w-full">
+                        <textarea
+                            className="textarea textarea-bordered w-full"
+                            placeholder="Review"
+                            name="review"
+                            required
+                        ></textarea>
+                        <button className="btn btn-sm border border-green-500 mt-1 text-green-700">Post</button>
+                    </form>
+                    <div className="flex justify-end">
+                        <button onClick={() => closeModal()} className="btn btn-sm border border-red-600 text-primary">X</button>
                     </div>
                 </div>
             </dialog>
+
 
         </div>
     );

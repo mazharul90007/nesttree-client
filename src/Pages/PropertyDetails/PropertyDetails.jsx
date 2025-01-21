@@ -5,7 +5,6 @@ import Details from "../../Components/Details/Details";
 
 const PropertyDetails = () => {
    const property = useLoaderData(); 
-   console.log(property)
 
     return (
         <div className="py-24">
