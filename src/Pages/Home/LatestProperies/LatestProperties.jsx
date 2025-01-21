@@ -2,6 +2,7 @@ import { FaBath, FaBed, FaCarAlt } from "react-icons/fa";
 import { TbCoinTaka } from "react-icons/tb";
 import useVerifiedProperties from "../../../Hooks/useVerifiedProperties";
 import { MdVerifiedUser } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,9 +25,11 @@ const LatestProperties = () => {
                                     <MdVerifiedUser />
                                 </div>
 
-                                <button className='absolute bottom-2 right-2 text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
-                                    Details
-                                </button>
+                                <Link to={`propertyDetails/${property._id}`}>
+                                    <button className='absolute bottom-2 right-2 text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
+                                        Details
+                                    </button>
+                                </Link>
 
                                 <div className=''>
                                     <img

@@ -14,6 +14,7 @@ import UpdateProperty from "../Pages/Dashboard/updateProperty/updateProperty";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageProperties from "../Pages/Dashboard/ManageProperties/ManageProperties";
 import PrivateRoute from "./PrivateRoute";
+import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         {
           path: 'allProperties',
           element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute>
+        },
+        {
+          path: 'propertyDetails/:id',
+          element: <PropertyDetails></PropertyDetails>,
+          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
         },
         
       ]
