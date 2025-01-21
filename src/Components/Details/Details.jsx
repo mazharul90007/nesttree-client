@@ -96,6 +96,7 @@ const Details = ({ property }) => {
 
         try {
             const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);
+            
             if (wishlistRes.data.insertedId) {
                 // Show success popup
                 Swal.fire({
@@ -121,8 +122,8 @@ const Details = ({ property }) => {
 
     return (
         <div>
-            <div className="grid grid-cols-12 w-11/12 mx-auto">
-                <div className="col-span-9">
+            <div className="grid w-11/12 mx-auto">
+                <div className="">
                     <div className="flex justify-center mb-6">
                         <img src={property.image} alt="Property Image" className="h-[450px] w-auto rounded-lg" />
                     </div>
@@ -133,7 +134,7 @@ const Details = ({ property }) => {
                         </div>
                         <div>
                             {
-                                wishlist.userEmail === user?.email && wishlist.propertyId === property._id
+                                wishlist?.userEmail === user?.email && wishlist?.propertyId === property._id
                                     ?
                                     <p className="text-green-600 border p-1 border-green-600 rounded">You have already added this Property in your Wishlist</p>
                                     :
@@ -250,7 +251,7 @@ const Details = ({ property }) => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-3">
+                <div className="">
 
                 </div>
             </div>

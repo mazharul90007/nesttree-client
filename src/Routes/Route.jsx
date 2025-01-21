@@ -15,6 +15,7 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageProperties from "../Pages/Dashboard/ManageProperties/ManageProperties";
 import PrivateRoute from "./PrivateRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
+import Wishlist from "../Pages/Dashboard/Wishlist/Wishlist";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
           element: <PropertyDetails></PropertyDetails>,
           loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
         },
+        {
+          path: 'allProperties/propertyDetails/:id',
+          element: <PropertyDetails></PropertyDetails>,
+          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+        },
+        
         
       ]
     },
@@ -56,6 +63,15 @@ const router = createBrowserRouter([
         {
           path: 'userProfile',
           element: <Profile></Profile>
+        },
+        {
+          path: 'wishlist',
+          element: <Wishlist></Wishlist>
+        },
+        {
+          path: 'wishlist/propertyDetails/:id',
+          element: <PropertyDetails></PropertyDetails>,
+          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
         },
         
         //Agent Dashboard
