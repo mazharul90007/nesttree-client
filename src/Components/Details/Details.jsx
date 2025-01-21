@@ -18,8 +18,25 @@ const Details = ({ property }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
+    //get specific wishlist by searching user Email and property Id
+
+    const { data: wishlist = [] } = useQuery({
+        queryKey: ['wishlist', user?.email, property?._id], // Add user.email and property._id as query key to ensure fresh data
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/wishlist`, {
+                params: {
+                    userEmail: user.email,
+                    propertyId: property._id,
+                },
+            });
+            // console.log(wishlist)
+            return res.data;
+        },
+    });
+
+
     //get Reviews
-    const { data: reviews = []} = useQuery({
+    const { data: reviews = [] } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/reviews/${property._id}`);
@@ -34,6 +51,7 @@ const Details = ({ property }) => {
     const closeModal = () => {
         document.getElementById('addReview').close();
     };
+
 
     const handleReview = async (e) => {
         e.preventDefault();
@@ -50,9 +68,9 @@ const Details = ({ property }) => {
         console.log(reviewInfo);
 
         //Add review to the server
-        const propertyRes = await axiosSecure.post('/reviews', reviewInfo);
-        console.log(propertyRes.data)
-        if (propertyRes.data.insertedId) {
+        const reviewRes = await axiosSecure.post('/reviews', reviewInfo);
+        console.log(reviewRes.data)
+        if (reviewRes.data.insertedId) {
             //show success popup
             Swal.fire({
                 position: "top-end",
@@ -68,9 +86,37 @@ const Details = ({ property }) => {
         closeModal();
     };
 
-    const handleAddToWishlist = (property) => {
-        console.log(property)
-    }
+    const handleAddToWishlist = async (property) => {
+        // Destructure to remove _id and keep the rest of the properties
+        const { _id, ...wishlistProperty } = property;
+        wishlistProperty.userEmail = user.email;
+        wishlistProperty.propertyId = _id;  // Use _id as propertyId in wishlist
+
+        console.log(wishlistProperty);
+
+        try {
+            const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);
+            if (wishlistRes.data.insertedId) {
+                // Show success popup
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: 'The Property has been added to Wishlist',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } catch (error) {
+            console.error("Error adding to wishlist:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops!",
+                text: "Failed to add the property to the wishlist. Please try again later."
+            });
+        }
+    };
+
+
 
 
     return (
@@ -86,13 +132,20 @@ const Details = ({ property }) => {
                             <FaCheckCircle /> <span>Verified</span>
                         </div>
                         <div>
-                            <button
-                                onClick={() => handleAddToWishlist(property)}
-                                // aria-label="Add to Wishlist"
-                                className="bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100"
-                            >
-                                <FaRegHeart /> Add to Wishlist
-                            </button>
+                            {
+                                wishlist.userEmail === user?.email && wishlist.propertyId === property._id
+                                    ?
+                                    <p className="text-green-600 border p-1 border-green-600 rounded">You have already added this Property in your Wishlist</p>
+                                    :
+                                    <button
+                                        onClick={() => handleAddToWishlist(property)}
+                                        // aria-label="Add to Wishlist"
+                                        className="bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100"
+                                    >
+                                        <FaRegHeart /> Add to Wishlist
+                                    </button>
+                            }
+
 
                         </div>
                     </div>
@@ -180,9 +233,9 @@ const Details = ({ property }) => {
                             <p className="mb-3 text-xl italic">Total Review: {reviews.length}</p>
                             {
                                 reviews.map(review =>
-                                    <div 
-                                    key={review._id}
-                                    className="flex items-center gap-4 mb-2 border-b border-gray-300"
+                                    <div
+                                        key={review._id}
+                                        className="flex items-center gap-4 mb-2 border-b border-gray-300"
                                     >
                                         <div>
                                             <img src={review.reviewerImage} alt="Reviewer" className="w-10 h-10 rounded" />
