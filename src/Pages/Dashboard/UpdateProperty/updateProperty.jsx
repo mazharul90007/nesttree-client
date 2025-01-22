@@ -71,7 +71,6 @@ const UpdateProperty = () => {
     console.log(property)
     return (
         <div>
-                    <h2>This is Add Property Page</h2>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* Property Title */}
