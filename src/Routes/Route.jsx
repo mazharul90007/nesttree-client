@@ -16,6 +16,7 @@ import ManageProperties from "../Pages/Dashboard/ManageProperties/ManageProperti
 import PrivateRoute from "./PrivateRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import Wishlist from "../Pages/Dashboard/Wishlist/Wishlist";
+import MakeOffer from "../Pages/Dashboard/MakeOffer/MakeOffer";
 
 
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
           path: 'wishlist/propertyDetails/:id',
           element: <PropertyDetails></PropertyDetails>,
           loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+        },
+        {
+          path: 'wishlist/makeOffer/:id',
+          element: <MakeOffer></MakeOffer>
         },
         
         //Agent Dashboard
