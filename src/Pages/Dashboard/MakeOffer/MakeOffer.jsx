@@ -58,9 +58,10 @@ const MakeOffer = () => {
                             <input
                                 type="text"
                                 defaultValue={property.title}
+                                readOnly
                                 placeholder="2 bed room unit at Mohammadpur"
                                 {...register('title', { required: true })}
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full pointer-events-none focus:outline-none focus:ring-0 bg-gray-100" />
                         </label>
                         {/* Property Location */}
                         <label className="form-control w-full my-4">
@@ -70,9 +71,10 @@ const MakeOffer = () => {
                             <input
                                 type="text"
                                 placeholder="Type Full Address"
+                                readOnly
                                 defaultValue={property.location}
                                 {...register('location', { required: true })}
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full pointer-events-none focus:outline-none focus:ring-0 bg-gray-100" />
                         </label>
                         {/* Agent name */}
                         <label className="form-control w-full my-4">
@@ -82,9 +84,10 @@ const MakeOffer = () => {
                             <input
                                 type="text"
                                 placeholder="Type Full Address"
+                                readOnly
                                 defaultValue={property.agentName}
                                 {...register('agentName', { required: true })}
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full pointer-events-none focus:outline-none focus:ring-0 bg-gray-100" />
                         </label>
                         {/* Buyer Name */}
                         <label className="form-control w-full my-4">
@@ -94,9 +97,10 @@ const MakeOffer = () => {
                             <input
                                 type="text"
                                 placeholder="Type Full Address"
+                                readOnly
                                 defaultValue={user?.displayName}
                                 {...register('buyerName', { required: true })}
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full pointer-events-none focus:outline-none focus:ring-0 bg-gray-100" />
                         </label>
                         {/* Buyer Email */}
                         <label className="form-control w-full my-4">
@@ -106,9 +110,10 @@ const MakeOffer = () => {
                             <input
                                 type="text"
                                 placeholder="Type Full Address"
+                                readOnly
                                 defaultValue={user?.email}
                                 {...register('buyerEmail', { required: true })}
-                                className="input input-bordered w-full" />
+                                className="input input-bordered w-full pointer-events-none focus:outline-none focus:ring-0 bg-gray-100" />
                         </label>
                         <div className="flex flex-col">
                             {/* Buying Date */}
