@@ -136,10 +136,18 @@ const MakeOffer = () => {
                                         <span className="text-red-500 text-sm italic"> (Price must be between {property.minPrice} to {property.maxPrice})</span></span>
                                 </div>
                                 <input
-                                    type="Number"
+                                    type="number"
                                     placeholder="Offer Price"
                                     defaultValue={property.minPrice}
-                                    {...register('offerPrice', { required: true })}
+                                    min={property.minPrice}
+                                    max={property.maxPrice}
+                                    {...register('offerPrice', {
+                                        required: true,
+                                        valueAsNumber: true,
+                                        validate: (value) =>
+                                            value >= property.minPrice && value <= property.maxPrice
+                                            || `Offer price must be between ${property.minPrice} and ${property.maxPrice}`
+                                    })}
                                     className="input input-bordered w-full" />
                             </label>
 
