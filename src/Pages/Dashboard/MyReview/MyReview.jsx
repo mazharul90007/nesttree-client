@@ -58,13 +58,13 @@ const MyReview = () => {
                         className="border p-2 bg-amber-50 rounded"
                         >
                             <h3 className="text-2xl">{review.reviewProperty}</h3>
-                            <p className="text-gray-500">Agent: {review.agentName}</p>
-                            <p className="text-gray-500">Review:</p>
-                            <div className="mx-4 mb-2 border border-gray-200 p-2 rounded-lg shadow-inherit">
-                                <p className="text-gray-600">{review.review}</p>
-                            </div>
+
+                            <p className="text-gray-500"><span className="text-sm">Agent:</span> {review.agentName}</p>
+
+                            <p className="text-gray-500"><span className="text-sm">Review:</span> <span className="text-gray-600">{review.review}</span></p>
+                            
                             <div className="flex justify-between items-center">
-                                <p className="text-gray-500 text-sm font-medium italic"> {new Date(review.postedTime).toLocaleString()}</p>
+                                <p className="text-gray-500 text-xs font-medium italic"> {new Date(review.postedTime).toLocaleString()}</p>
                                 <button onClick={()=>handleReviewDelete(review._id)} className="text-red-600 border border-red-500 text-xl w-fit p-1 rounded-full hover:scale-95 transition-transform transform"><MdDelete /></button>
                             </div>
                         </div>

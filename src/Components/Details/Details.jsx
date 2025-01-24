@@ -37,7 +37,7 @@ const Details = ({ property }) => {
 
 
     //get Reviews
-    const { data: reviews = [] } = useQuery({
+    const { data: reviews = [], refetch } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/reviews/${property._id}`);
@@ -98,8 +98,9 @@ const Details = ({ property }) => {
 
         try {
             const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);
-            
+            refetch();
             if (wishlistRes.data.insertedId) {
+                
                 // Show success popup
                 Swal.fire({
                     position: "top-end",

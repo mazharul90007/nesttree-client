@@ -18,6 +18,7 @@ import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import Wishlist from "../Pages/Dashboard/Wishlist/Wishlist";
 import MakeOffer from "../Pages/Dashboard/MakeOffer/MakeOffer";
 import MyReview from "../Pages/Dashboard/MyReview/MyReview";
+import ManageReviews from "../Pages/Dashboard/ManageReviews/ManageReviews";
 
 
 const router = createBrowserRouter([
@@ -114,6 +115,10 @@ const router = createBrowserRouter([
         {
           path: 'manageProperties',
           element: <ManageProperties></ManageProperties>
+        },
+        {
+          path: 'manageReviews',
+          element: <ManageReviews></ManageReviews>
         }
       ]
     }

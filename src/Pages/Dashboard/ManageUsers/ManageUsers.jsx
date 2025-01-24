@@ -85,9 +85,9 @@ const ManageUsers = () => {
     }
     return (
         <div>
-            <div className="flex justify-evenly my-4">
-                <h2 className="text-3xl">All Users</h2>
-                <h2 className="text-3xl">Total User: {users.length}</h2>
+            <div className=" border border-amber-600 p-4 w-fit flex gap-3 rounded mx-auto my-10">
+                <h2 className="text-4xl border-r-2 border-amber-600 pr-3">Users</h2>
+                <p className="text-4xl font-bold text-amber-700">{users.length}</p>
             </div>
             <div>
                 <div className="overflow-x-auto">
