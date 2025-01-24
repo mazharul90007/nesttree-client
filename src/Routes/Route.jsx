@@ -17,6 +17,7 @@ import PrivateRoute from "./PrivateRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import Wishlist from "../Pages/Dashboard/Wishlist/Wishlist";
 import MakeOffer from "../Pages/Dashboard/MakeOffer/MakeOffer";
+import MyReview from "../Pages/Dashboard/MyReview/MyReview";
 
 
 const router = createBrowserRouter([
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
         {
           path: 'wishlist/makeOffer/:id',
           element: <MakeOffer></MakeOffer>
+        },
+        {
+          path: 'myReview',
+          element: <MyReview></MyReview>
         },
         
         //Agent Dashboard

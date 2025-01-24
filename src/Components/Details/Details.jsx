@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 const Details = ({ property }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    // console.log(property)
 
     //get specific wishlist by searching user Email and property Id
 
@@ -63,7 +64,8 @@ const Details = ({ property }) => {
         const reviewProperty = property.title;
         const reviewerEmail = user.email;
         const postedTime = Date.now();
-        const reviewInfo = { review, reviewPropertyId, reviewerName, reviewerImage, reviewProperty, reviewerEmail, postedTime }
+        const agentName = property.agentName;
+        const reviewInfo = { review, reviewPropertyId, reviewerName, reviewerImage, reviewProperty, reviewerEmail, postedTime, agentName }
 
         console.log(reviewInfo);
 
@@ -251,9 +253,7 @@ const Details = ({ property }) => {
                         </div>
                     </div>
                 </div>
-                <div className="">
-
-                </div>
+                
             </div>
             {/* Show Modal */}
             <dialog id="addReview" className="modal" aria-modal="true">
