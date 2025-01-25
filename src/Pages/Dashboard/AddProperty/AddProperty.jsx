@@ -9,10 +9,13 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddProperty = () => {
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, reset, watch, formState: {errors} } = useForm()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+
+    //watch min price for validation
+    const minPrice = watch('minPrice')
 
 
     const onSubmit = async (data) => {
@@ -281,7 +284,8 @@ const AddProperty = () => {
                                 type="Number"
                                 placeholder="Min Price"
                                 {...register('minPrice', { required: true })}
-                                className="input input-bordered w-full" />
+                                className={`input input-bordered w-full ${errors.minPrice && "input-error"}`} />
+                                {errors.minPrice && <p className="text-red-600">{errors.minPrice.message}</p>}
                         </label>
 
                         {/*maximum price */}
@@ -292,8 +296,14 @@ const AddProperty = () => {
                             <input
                                 type="Number"
                                 placeholder="Max Price"
-                                {...register('maxPrice', { required: true })}
-                                className="input input-bordered w-full" />
+                                {...register('maxPrice', { 
+                                    required: true,
+                                    validate: (value)=>
+                                        parseFloat(value) > parseFloat(minPrice) ||
+                                    "Maximum price must be greater than minimum price"  
+                                })}
+                                className={`input input-bordered w-full ${errors.maxPrice && "input-error"}`} />
+                                {errors.maxPrice && <p className="text-red-600">{errors.maxPrice.message}</p>}
                         </label>
 
                     </div>

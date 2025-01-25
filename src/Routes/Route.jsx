@@ -19,6 +19,7 @@ import Wishlist from "../Pages/Dashboard/Wishlist/Wishlist";
 import MakeOffer from "../Pages/Dashboard/MakeOffer/MakeOffer";
 import MyReview from "../Pages/Dashboard/MyReview/MyReview";
 import ManageReviews from "../Pages/Dashboard/ManageReviews/ManageReviews";
+import ManageRequestProperty from "../Pages/Dashboard/ManageRequestedProperty/ManageRequestProperty";
 
 
 const router = createBrowserRouter([
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
           path: 'updateProperty/:id',
           element: <UpdateProperty></UpdateProperty>,
           loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+        },
+        {
+          path: 'requestedProperties',
+          element: <ManageRequestProperty></ManageRequestProperty>
         },
         //Admin Dashboard
         {

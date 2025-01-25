@@ -13,7 +13,7 @@ const MakeOffer = () => {
     const { register, handleSubmit, reset } = useForm();
     const { user } = useAuth();
 
-    console.log(property)
+    // console.log(property)
 
     const onSubmit = async (data) => {
         //now send the menu item data to the server with the image
@@ -24,6 +24,7 @@ const MakeOffer = () => {
             agentEmail: property?.agentEmail,
             buyerName: data.buyerName,
             buyerEmail: data.buyerEmail,
+            propertyId: property?.propertyId,
             buyingDate: data.buyingDate,
             offerPrice: data.offerPrice,
             status: 'pending'

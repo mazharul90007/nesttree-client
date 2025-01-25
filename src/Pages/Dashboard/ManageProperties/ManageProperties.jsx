@@ -10,13 +10,14 @@ const ManageProperties = () => {
         axiosSecure.patch(`/verifyProperty/${property._id}`, { status: "verified" })
             .then(res => {
                 const data = res.data;
+                refetch();
                 console.log(data)
                 if (data.modifiedCount > 0) {
-                    refetch();
+
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: 'Congratulation! Your Property has been verified',
+                        title: 'Congratulation! The Property has been verified',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -28,13 +29,14 @@ const ManageProperties = () => {
         axiosSecure.patch(`/verifyProperty/${property._id}`, { status: "rejected" })
             .then(res => {
                 const data = res.data;
+                refetch();
                 console.log(data)
                 if (data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: 'Sorry! Your Property is rejected',
+                        title: 'Sorry! The Property is rejected',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -44,7 +46,7 @@ const ManageProperties = () => {
 
     // Function to handle empty fields
     const handleEmptyField = (field) => {
-        return field ? field : "—"; 
+        return field ? field : "—";
     };
 
     return (
