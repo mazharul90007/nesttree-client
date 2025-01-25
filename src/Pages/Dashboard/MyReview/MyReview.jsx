@@ -13,6 +13,7 @@ const MyReview = () => {
         queryKey: ['reviews'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/myReviews/${user.email}`)
+            console.log(res.data)
             return res.data;
 
         }

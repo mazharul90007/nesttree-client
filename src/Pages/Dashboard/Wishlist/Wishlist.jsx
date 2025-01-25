@@ -5,16 +5,18 @@ import { TbCoinTaka } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { MdDelete, MdVerifiedUser } from "react-icons/md";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const Wishlist = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const { data: wishlistProperties = [], refetch } = useQuery({
         queryKey: ['wishlistProperties'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/allWishlist');
+            const res = await axiosSecure.get(`/allWishlist/${user?.email}`);
             return res.data;
         }
     })
@@ -24,7 +26,7 @@ const Wishlist = () => {
             state: property
         });
     }
-    
+
 
     const handleDeleteWishlistProperty = (property) => {
         // console.log(property)
@@ -117,7 +119,7 @@ const Wishlist = () => {
                                         </div>
                                     </div>
                                     <div className="flex justify-between items-center pt-2">
-                                        <button onClick={()=>handleMakeOffer(property)} className="bg-purple-200 text-orange-700 text-xs font-semibold px-2 py-1 rounded hover:scale-95 transform transition-transform">Make an Offer</button>
+                                        <button onClick={() => handleMakeOffer(property)} className="bg-purple-200 text-orange-700 text-xs font-semibold px-2 py-1 rounded hover:scale-95 transform transition-transform">Make an Offer</button>
                                         <Link to={`propertyDetails/${property.propertyId}`}>
                                             <button className='text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
                                                 Details
