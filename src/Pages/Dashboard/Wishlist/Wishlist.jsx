@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaBath, FaBed, FaCarAlt } from "react-icons/fa";
-import { TbCoinTaka } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { MdDelete, MdVerifiedUser } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import { AiOutlineDollar } from "react-icons/ai";
 
 
 const Wishlist = () => {

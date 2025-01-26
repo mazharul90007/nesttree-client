@@ -3,6 +3,7 @@ import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
+import { RiSpam2Line } from "react-icons/ri";
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -18,7 +19,7 @@ const ManageUsers = () => {
 
     // Make User Admin
     const handleMakeAdmin = (user) => {
-        axiosSecure.patch(`/users/admin/${user._id}`)
+        axiosSecure.patch(`/users/${user._id}`, { role: 'admin' })
             .then(res => {
                 const data = res.data;
                 console.log(data)
@@ -27,7 +28,7 @@ const ManageUsers = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name} is an Admin now`,
+                        title: `${user.name} is an Admin Now`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -36,7 +37,7 @@ const ManageUsers = () => {
     }
     // Make User Agent
     const handleMakeAgent = (user) => {
-        axiosSecure.patch(`/users/agent/${user._id}`)
+        axiosSecure.patch(`/users/${user._id}`, { role: 'agent' })
             .then(res => {
                 const data = res.data;
                 console.log(data)
@@ -45,13 +46,33 @@ const ManageUsers = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name} is an Agent now`,
+                        title: `${user.name} is an Agent Now`,
                         showConfirmButton: false,
                         timer: 1500
                     });
                 }
             })
     }
+
+    //Make Agent Fraud
+    const handleMakeFraud = (user) => {
+        axiosSecure.patch(`/users/${user._id}`, { role: 'fraud' })
+            .then(res => {
+                const data = res.data;
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user.name} is listed as Fraud`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
 
     const handleDeleteUser = (user) => {
         console.log(user)
@@ -110,37 +131,56 @@ const ManageUsers = () => {
                                         <th>{index + 1}</th>
                                         <td>{user.name}</td>
                                         <td>{user.email}</td>
-                                        <td>
+                                        <td className={user.role === 'fraud' && 'text-red-500 font-bold'}>
                                             {
                                                 user.role === 'admin' ? 'Admin'
                                                     : user.role === 'agent' ? 'Agent'
-                                                        : 'User'
+                                                        : user.role === 'fraud' ? 'Fraud'
+                                                            : 'User'
 
                                             }
 
                                         </td>
                                         <td>
-                                            <div className="flex flex-col gap-2">
-                                                <button
-                                                    onClick={() => handleMakeAdmin(user)}
-                                                    className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
+                                            {
+                                                user.role === 'fraud' ?
+                                                    <div className="flex gap-2 text-lg items-center text-red-500 font-bold justify-center">
+                                                        <RiSpam2Line /> <span>Fraud</span>
+                                                    </div>
+                                                    :
+                                                    <div className="flex flex-col gap-2">
+                                                        <button
+                                                            onClick={() => handleMakeAdmin(user)}
+                                                            className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
                                                     ${currentUser.email === user.email ?
-                                                            'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-green-200 text-red-600'}`}
-                                                    disabled={currentUser.email === user.email}
-                                                >
-                                                    Admin
-                                                </button>
+                                                                    'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-green-200 text-red-600'}`}
+                                                            disabled={currentUser.email === user.email}
+                                                        >
+                                                            Admin
+                                                        </button>
 
-                                                <button
-                                                    onClick={() => handleMakeAgent(user)}
-                                                    className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
+                                                        <button
+                                                            onClick={() => handleMakeAgent(user)}
+                                                            className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
                                                     ${currentUser.email === user.email ?
-                                                            'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-orange-200 text-red-600'}`}
-                                                    disabled={currentUser.email === user.email}
-                                                >
-                                                    Agent
-                                                </button>
-                                            </div>
+                                                                    'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-orange-200 text-red-600'}`}
+                                                            disabled={currentUser.email === user.email}
+                                                        >
+                                                            Agent
+                                                        </button>
+
+                                                        <button
+                                                            onClick={() => handleMakeFraud(user)}
+                                                            className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
+                                                    ${currentUser.email === user.email ?
+                                                                    'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-200 text-red-600'}`}
+                                                            disabled={currentUser.email === user.email}
+                                                        >
+                                                            Mark as Fraud
+                                                        </button>
+                                                    </div>
+                                            }
+
                                         </td>
 
                                         <td>
