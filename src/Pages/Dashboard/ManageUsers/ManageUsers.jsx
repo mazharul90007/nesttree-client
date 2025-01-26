@@ -61,11 +61,16 @@ const ManageUsers = () => {
                 const data = res.data;
                 console.log(data)
                 if (data.modifiedCount > 0) {
+                    axiosSecure.delete(`/fraudProperties/${user.email}`)
+                        .then(res => {
+                            const data = res.data;
+                            console.log(data)
+                        })
                     refetch();
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name} is listed as Fraud`,
+                        title: `${user.name} is listed as Fraud and all of his added data are removed`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -169,15 +174,18 @@ const ManageUsers = () => {
                                                             Agent
                                                         </button>
 
-                                                        <button
-                                                            onClick={() => handleMakeFraud(user)}
-                                                            className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
+                                                        {
+                                                            user.role === 'agent' &&
+                                                            <button
+                                                                onClick={() => handleMakeFraud(user)}
+                                                                className={`border p-1 rounded-md text-sm font-medium hover:scale-95 transform transition-transform duration-300 shadow 
                                                     ${currentUser.email === user.email ?
-                                                                    'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-200 text-red-600'}`}
-                                                            disabled={currentUser.email === user.email}
-                                                        >
-                                                            Mark as Fraud
-                                                        </button>
+                                                                        'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-200 text-red-600'}`}
+                                                                disabled={currentUser.email === user.email}
+                                                            >
+                                                                Mark as Fraud
+                                                            </button>
+                                                        }
                                                     </div>
                                             }
 

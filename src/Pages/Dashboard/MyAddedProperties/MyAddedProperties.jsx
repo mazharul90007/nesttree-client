@@ -53,7 +53,10 @@ const MyAddedProperties = () => {
 
     return (
         <div>
-            <h2>Total Added property: {addedProperties.length}</h2>
+            <div className=" border border-amber-600 p-4 w-fit mx-auto flex gap-3 rounded  my-10">
+                    <h2 className="text-4xl border-r-2 border-amber-600 pr-3">My Added Properties</h2>
+                    <p className="text-4xl font-bold text-amber-700">{addedProperties.length}</p>
+                </div>
             <div className="flex flex-col gap-2">
                 {
                     addedProperties.map(property =>
