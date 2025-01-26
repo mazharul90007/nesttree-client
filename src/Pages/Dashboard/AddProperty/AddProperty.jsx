@@ -9,7 +9,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddProperty = () => {
-    const { register, handleSubmit, reset, watch, formState: {errors} } = useForm()
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
@@ -125,7 +125,7 @@ const AddProperty = () => {
                             <div className="label">
                                 <span className="label-text">Living Room</span>
                             </div>
-                            <select defaultValue='default' {...register('livingRoom' , {required: true})}
+                            <select defaultValue='default' {...register('livingRoom', { required: true })}
                                 className="select select-bordered w-full">
                                 <option disabled value='default'>Select Yes/No</option>
                                 <option value="Yes">Yes</option>
@@ -138,7 +138,7 @@ const AddProperty = () => {
                             <div className="label">
                                 <span className="label-text">Dining Room</span>
                             </div>
-                            <select defaultValue='default' {...register('diningRoom' , {required: true})}
+                            <select defaultValue='default' {...register('diningRoom', { required: true })}
                                 className="select select-bordered w-full">
                                 <option disabled value='default'>Select Yes/No</option>
                                 <option value="yes">Yes</option>
@@ -186,7 +186,7 @@ const AddProperty = () => {
                             <div className="label">
                                 <span className="label-text">House Type</span>
                             </div>
-                            <select defaultValue='default' {...register('type' , {required: true})}
+                            <select defaultValue='default' {...register('type', { required: true })}
                                 className="select select-bordered w-full">
                                 <option disabled value='default'>House Type</option>
                                 <option value="FullHouse">Full House</option>
@@ -275,36 +275,47 @@ const AddProperty = () => {
                             </select>
                         </label>
 
-                        {/*minimum price */}
+                        {/* Minimum Price */}
                         <label className="form-control w-full my-4">
                             <div className="label">
-                                <span className="label-text">Min Price</span>
+                                <span className="label-text">Min Price in USD</span>
                             </div>
                             <input
-                                type="Number"
+                                type="number"
                                 placeholder="Min Price"
-                                {...register('minPrice', { required: true })}
-                                className={`input input-bordered w-full ${errors.minPrice && "input-error"}`} />
-                                {errors.minPrice && <p className="text-red-600">{errors.minPrice.message}</p>}
+                                {...register('minPrice', {
+                                    required: "Minimum price is required",
+                                    valueAsNumber: true,
+                                    validate: (value) => value >= 10 || "Minimum price should be at least 10",
+                                })}
+                                className={`input input-bordered w-full ${errors.minPrice && "input-error"}`}
+                            />
+                            {errors.minPrice && <p className="text-red-600">{errors.minPrice.message}</p>}
                         </label>
 
-                        {/*maximum price */}
+                        {/* Maximum Price */}
                         <label className="form-control w-full my-4">
                             <div className="label">
-                                <span className="label-text">Max Price</span>
+                                <span className="label-text">Max Price in USD</span>
                             </div>
                             <input
-                                type="Number"
+                                type="number"
                                 placeholder="Max Price"
-                                {...register('maxPrice', { 
-                                    required: true,
-                                    validate: (value)=>
-                                        parseFloat(value) > parseFloat(minPrice) ||
-                                    "Maximum price must be greater than minimum price"  
+                                {...register('maxPrice', {
+                                    required: "Maximum price is required",
+                                    valueAsNumber: true,
+                                    validate: {
+                                        lessThanMax: (value) =>
+                                            value <= 900000 || "Maximum price should not exceed 900000",
+                                        greaterThanMin: (value) =>
+                                            value > parseFloat(minPrice) || "Maximum price must be greater than minimum price",
+                                    },
                                 })}
-                                className={`input input-bordered w-full ${errors.maxPrice && "input-error"}`} />
-                                {errors.maxPrice && <p className="text-red-600">{errors.maxPrice.message}</p>}
+                                className={`input input-bordered w-full ${errors.maxPrice && "input-error"}`}
+                            />
+                            {errors.maxPrice && <p className="text-red-600">{errors.maxPrice.message}</p>}
                         </label>
+
 
                     </div>
                     {/* Property Details */}

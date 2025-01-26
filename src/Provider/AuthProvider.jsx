@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const axiosPublic = useAxiosPublic();
+    const [amount, setAmount] = useState(0);
 
     //Create or Register a User
     const createUser = (email, password) => {
@@ -88,6 +89,8 @@ const AuthProvider = ({ children }) => {
         logOut,
         updateUserProfile,
         googleSignUp,
+        amount,
+        setAmount
 
 
 

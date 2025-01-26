@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const LatestProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
+    console.log(verifiedProperties)
 
 
     return (

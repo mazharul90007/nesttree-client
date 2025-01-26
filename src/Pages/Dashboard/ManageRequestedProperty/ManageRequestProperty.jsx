@@ -22,10 +22,19 @@ const ManageRequestProperty = () => {
 
     const handleAccept = (property) => {
         console.log(property._id)
-        axiosSecure.patch(`/requestedOffer/${property._id}`, { status: "Accepted" })
+        axiosSecure.patch(`/requestedOffer/${property._id}`, { status: "accepted" })
             .then(res => {
                 const data = res.data;
                 console.log(data)
+
+                 axiosSecure.patch(`/allWishlist`, {
+                    params: {
+                        userEmail: user.email,
+                        propertyId: property._id,
+                    },
+                });
+                
+
                 if (data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({
@@ -100,17 +109,17 @@ const ManageRequestProperty = () => {
                                     <td>{handleEmptyField(property.offerPrice)}</td>
                                     <td>
                                         {
-                                            property?.status === "Accepted" ?
+                                            property?.status === "accepted" ?
                                                 (<div>
-                                                    <p className="border p-1 rounded-md text-sm font-medium shadow text-green-600">Accepted</p>
+                                                    <p className="border p-1 rounded-md text-sm font-medium shadow text-green-600 text-center">Accepted</p>
                                                 </div>)
                                                 : property.status === "rejected" ?
                                                     (<div>
-                                                        <p className="border p-1 rounded-md text-sm font-medium shadow text-red-600">Rejected</p>
+                                                        <p className="border p-1 rounded-md text-sm font-medium shadow text-red-600 text-center">Rejected</p>
                                                     </div>)
                                                     : property.status === "pending" &&
                                                     (<div>
-                                                        <p className="border p-1 rounded-md text-sm font-medium shadow  text-gray-600">Pending</p>
+                                                        <p className="border p-1 rounded-md text-sm font-medium shadow  text-gray-600 text-center">Pending</p>
                                                     </div>)
                                         }
                                     </td>

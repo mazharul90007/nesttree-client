@@ -20,6 +20,9 @@ import MakeOffer from "../Pages/Dashboard/MakeOffer/MakeOffer";
 import MyReview from "../Pages/Dashboard/MyReview/MyReview";
 import ManageReviews from "../Pages/Dashboard/ManageReviews/ManageReviews";
 import ManageRequestProperty from "../Pages/Dashboard/ManageRequestedProperty/ManageRequestProperty";
+import PropertyBought from "../Pages/Dashboard/PropertyBought/PropertyBought";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import Support from "../Pages/Dashboard/Support/Support";
 
 
 const router = createBrowserRouter([
@@ -54,6 +57,10 @@ const router = createBrowserRouter([
           element: <PropertyDetails></PropertyDetails>,
           loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
         },
+        {
+          path:'support',
+          element: <Support></Support>
+        }
         
         
       ]
@@ -62,7 +69,6 @@ const router = createBrowserRouter([
       path: '/dashboard',
       element: <Dashboard></Dashboard>,
       children: [
-
         //User Dashboard
         {
           path: 'userProfile',
@@ -78,12 +84,25 @@ const router = createBrowserRouter([
           loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
         },
         {
+          path: 'propertyBought/propertyDetails/:id',
+          element: <PropertyDetails></PropertyDetails>,
+          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+        },
+        {
           path: 'wishlist/makeOffer/:id',
           element: <MakeOffer></MakeOffer>
         },
         {
           path: 'myReview',
           element: <MyReview></MyReview>
+        },
+        {
+          path: 'propertyBought',
+          element: <PropertyBought></PropertyBought>
+        },
+        {
+          path: 'propertyBought/payment',
+          element: <Payment></Payment>
         },
         
         //Agent Dashboard

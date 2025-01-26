@@ -80,7 +80,7 @@ const Dashboard = () => {
                         <NavLink to={'/'}><FaHome></FaHome>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/contact'}><IoMdMail />
+                        <NavLink to={'/support'}><IoMdMail />
                             Support</NavLink>
                     </li>
                 </ul>

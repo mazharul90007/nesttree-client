@@ -71,20 +71,20 @@ const Registration = () => {
     };
 
     return (
-        <div>
+        <div className="pt-16">
             <Helmet>
                 <title>Bistro | SignUp</title>
             </Helmet>
             <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content flex-col md:flex-row-reverse">
-                    <div className="text-center lg:text-left md:w-1/2">
+                <div className="hero-content grid grid-cols-1 md:grid-cols-2">
+                    <div className="text-center md:col-span-1 lg:text-left md:w-1/2">
                         <h1 className="text-5xl font-bold">Login now!</h1>
                         <p className="py-6">
                             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                             quasi. In deleniti eaque aut repudiandae et a id nisi.
                         </p>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md md:w-1/2">
+                    <div className="card bg-base-100 w-full md:w-10/12 mx-auto shrink-0 shadow-md md:col-span-1">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">

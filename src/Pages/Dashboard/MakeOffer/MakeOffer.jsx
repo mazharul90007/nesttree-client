@@ -27,6 +27,7 @@ const MakeOffer = () => {
             propertyId: property?.propertyId,
             buyingDate: data.buyingDate,
             offerPrice: data.offerPrice,
+            propertyImage: property?.image,
             status: 'pending'
         }
         console.log(propertyInfo)
