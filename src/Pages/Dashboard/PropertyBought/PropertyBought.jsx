@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link, useNavigate } from "react-router-dom";
-import { TbCoinTaka } from "react-icons/tb";
 import { MdVerifiedUser } from "react-icons/md";
+import { AiOutlineDollar } from "react-icons/ai";
 
 
 const PropertyBought = () => {
@@ -66,7 +66,7 @@ const PropertyBought = () => {
                                         <p className="text-sm text-gray-500">{property.location}</p>
 
                                         <div className="text-lg font-semibold italic text-gray-500 flex items-center gap-1">
-                                            <TbCoinTaka />
+                                            <AiOutlineDollar />
                                             <p>{property.offerPrice}</p>
                                         </div>
                                         <div>

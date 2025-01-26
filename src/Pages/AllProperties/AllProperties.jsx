@@ -70,7 +70,7 @@ const AllProperties = () => {
                                     <p className="text-sm text-gray-500 pb-2">District: {property.district}</p>
 
                                     <div className="text-lg font-semibold italic text-gray-500 flex items-center gap-1">
-                                        <TbCoinTaka />
+                                        <AiOutlineDollar />
                                         <p>{property.minPrice} - {property.maxPrice}</p>
                                     </div>
 

@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { FaCheckCircle } from "react-icons/fa";
-import { TbCoinTaka } from "react-icons/tb";
 import bed from '../../assets/icons/bed.png'
 import bath from '../../assets/icons/bath.png'
 import parking from '../../assets/icons/parking.png'
@@ -13,6 +12,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import { AiOutlineDollar } from "react-icons/ai";
 
 const Details = ({ property }) => {
     const { user } = useAuth();
@@ -157,7 +157,7 @@ const Details = ({ property }) => {
                     <h3 className="text-3xl font-semibold mt-6">{property.title}</h3>
                     {/* Price */}
                     <div className="text-xl font-semibold italic text-gray-500 flex items-center gap-1">
-                        <TbCoinTaka />
+                        <AiOutlineDollar />
                         <p>{property.minPrice} - {property.maxPrice}</p>
                     </div>
 

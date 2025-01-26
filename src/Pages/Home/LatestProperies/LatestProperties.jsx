@@ -1,8 +1,8 @@
 import { FaBath, FaBed, FaCarAlt } from "react-icons/fa";
-import { TbCoinTaka } from "react-icons/tb";
 import useVerifiedProperties from "../../../Hooks/useVerifiedProperties";
 import { MdVerifiedUser } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { AiOutlineDollar } from "react-icons/ai";
 
 
 
@@ -49,7 +49,7 @@ const LatestProperties = () => {
                                     <p className="text-sm text-gray-500">{property.location}</p>
 
                                     <div className="text-lg font-semibold italic text-gray-500 flex items-center gap-1">
-                                        <TbCoinTaka />
+                                        <AiOutlineDollar />
                                         <p>{property.minPrice} - {property.maxPrice}</p>
                                     </div>
 

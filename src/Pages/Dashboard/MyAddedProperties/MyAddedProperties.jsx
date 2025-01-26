@@ -86,7 +86,7 @@ const MyAddedProperties = () => {
                                             </div>
                                         </div>
                                         <div className="text-gray-500 flex items-center gap-1">
-                                            <TbCoinTaka />
+                                            <AiOutlineDollar />
                                             <p>{property.minPrice} - {property.maxPrice}</p>
                                         </div>
                                     </div>
