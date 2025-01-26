@@ -1,10 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const Navbar = () => {
 
     const { user, logOut, setUser } = useAuth()
+    const axiosSecure = useAxiosSecure()
+
+    const { data: userProfile = [] } = useQuery({
+        queryKey: ['userProfile'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users/${user?.email}`);
+            console.log(res.data)
+            return res?.data;
+
+        }
+    })
+
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -22,7 +36,7 @@ const Navbar = () => {
             user?.email && <>
                 <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/allProperties'}><li>All Properties</li></NavLink>
 
-                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/dashboard'}><li>Dashboard</li></NavLink>
+                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={ userProfile.role === 'admin' ? '/dashboard/adminProfile' : userProfile.role === 'agent' ? '/dashboard/agentProfile' : '/dashboard/userProfile'}><li>Dashboard</li></NavLink>
             </>
         }
         <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/contact'}><li>Contact Us</li></NavLink>

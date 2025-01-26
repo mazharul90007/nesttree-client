@@ -1,9 +1,9 @@
 import banner from '../../assets/Banner/banner.jpg'
 import { FaSearch, FaBed, FaBath, FaCarAlt } from "react-icons/fa";
 import useVerifiedProperties from '../../Hooks/useVerifiedProperties';
-import { TbCoinTaka } from 'react-icons/tb';
 import { MdVerifiedUser } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { AiOutlineDollar } from 'react-icons/ai';
 
 const AllProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
