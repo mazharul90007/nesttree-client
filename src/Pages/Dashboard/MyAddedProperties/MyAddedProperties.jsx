@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { FaBath, FaBed, FaCarAlt } from "react-icons/fa";
-import { TbCoinTaka } from "react-icons/tb";
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { AiOutlineDollar } from "react-icons/ai";
 
 
 const MyAddedProperties = () => {

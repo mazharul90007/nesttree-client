@@ -23,6 +23,7 @@ import ManageRequestProperty from "../Pages/Dashboard/ManageRequestedProperty/Ma
 import PropertyBought from "../Pages/Dashboard/PropertyBought/PropertyBought";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import Support from "../Pages/Dashboard/Support/Support";
+import MySoldProperties from "../Pages/Dashboard/MySoldProperties/MySoldProperties";
 
 
 const router = createBrowserRouter([
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
           path: 'updateProperty/:id',
           element: <UpdateProperty></UpdateProperty>,
           loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+        },
+        {
+          path: 'soldProperties',
+          element: <MySoldProperties></MySoldProperties>
         },
         {
           path: 'requestedProperties',

@@ -71,6 +71,7 @@ const CheckoutForm = ({ property }) => {
                 //Save payment in the database (if needed)
                 const payment = {
                     buyerEmail: property.buyerEmail,
+                    buyerName: property.buyerName,
                     price: amount,
                     buyingDate: new Date(),
                     transactionId: paymentIntent.id,
