@@ -17,6 +17,7 @@ const MyAddedProperties = () => {
         queryKey: ['properties'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/properties/${user.email}`)
+            console.log(res.data)
             return res.data;
         }
     });
@@ -95,7 +96,7 @@ const MyAddedProperties = () => {
                                     </div>
                                     <div className="flex flex-col items-center gap-2">
                                         <p className="text-sm text-gray-400 italic ">Posted by:</p>
-                                        <img src={property.agentImg} className="w-10 h-10 rounded-full" alt="" />
+                                        <img src={property.agentImage} className="w-10 h-10 rounded-full" alt="" />
                                         <p className="text-gray-500">{property.agentName}</p>
                                     </div>
                                 </div>

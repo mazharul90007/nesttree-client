@@ -26,17 +26,19 @@ const ManageRequestProperty = () => {
             .then(res => {
                 const data = res.data;
                 console.log(data)
-
-                 axiosSecure.patch(`/allWishlist`, {
-                    params: {
-                        userEmail: user.email,
-                        propertyId: property._id,
-                    },
-                });
-                
-
                 if (data.modifiedCount > 0) {
-                    refetch();
+                    axiosSecure.patch(`/rejectRequestedOffer`, null, {
+                        params: {
+                            propertyId: property.propertyId
+                        }
+                    })
+                        .then(res => {
+                            const data = res.data;
+                            console.log(data)
+                            refetch();
+                        })
+
+
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
