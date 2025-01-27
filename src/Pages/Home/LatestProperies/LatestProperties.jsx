@@ -14,7 +14,7 @@ const LatestProperties = () => {
     return (
         <div className="my-12">
 
-            <div className='grid md:grid-cols-12 my-16 w-11/12 mx-auto'>
+            <div className='grid md:grid-cols-12 my-16'>
 
                 {/* Property Cards */}
                 <div className='md:col-span-9 flex flex-col gap-4'>

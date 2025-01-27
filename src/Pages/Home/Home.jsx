@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../../Components/Banner/Banner";
 import LatestProperties from "./LatestProperies/LatestProperties";
+import AdvertisementProperty from "./AdvertisementPropertySection/AdvertisementProperty";
 
 
 
@@ -13,7 +14,10 @@ const Home = () => {
             <div className="">
                 <Banner></Banner>
             </div>
-            <LatestProperties></LatestProperties>
+            <div className="w-11/12 mx-auto">
+                <LatestProperties></LatestProperties>
+                <AdvertisementProperty></AdvertisementProperty>
+            </div>
         </div>
     );
 };
