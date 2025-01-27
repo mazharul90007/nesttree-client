@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import signUp from "../../../public/signup.json"
+import Lottie from "lottie-react";
 
 
 
@@ -75,19 +77,22 @@ const Registration = () => {
     return (
         <div className="pt-16">
             <Helmet>
-                <title>Bistro | SignUp</title>
+                <title>Nestree || SignUp</title>
             </Helmet>
             <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content grid grid-cols-1 md:grid-cols-2">
-                    <div className="text-center md:col-span-1 lg:text-left md:w-1/2">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
+                <div className="hero-content grid grid-cols-1 md:grid-cols-2 items-center">
+                    <div className="text-center md:col-span-1">
+                        <Lottie animationData={signUp}></Lottie>
                     </div>
-                    <div className="card bg-base-100 w-full md:w-10/12 mx-auto shrink-0 shadow-md md:col-span-1">
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                    <div className="card bg-base-100 w-full md:w-10/12 mx-auto shadow-md md:col-span-1 py-8">
+                        <h1 className="text-center text-2xl font-bold mt-1">Create Account</h1>
+                        <p className="text-center text-gray-500 text-sm mt-2">
+                            Access to all features. No credit card required.
+                        </p>
+                        {/* Google Sign-in Button */}
+                        <SocialLogin></SocialLogin>
+                        <div className="divider">OR</div>
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -154,10 +159,17 @@ const Registration = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign Up</button>
                             </div>
-                            <p className=''><small>Already have an Account? <Link to={'/login'}>LogIn</Link></small></p>
-                            <div className="divider">OR</div>
-                            <SocialLogin></SocialLogin>
                         </form>
+                        {/* Sign Up Link */}
+                        <p className="text-center text-sm text-gray-500 ">
+                            Already have an account?{" "}
+                            <Link
+                                to={'/login'}
+                                className="text-blue-600 font-medium underline hover:text-blue-700"
+                            >
+                                Login
+                            </Link>
+                        </p>
                     </div>
                 </div>
             </div>

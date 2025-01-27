@@ -52,12 +52,12 @@ const router = createBrowserRouter([
         {
           path: 'propertyDetails/:id',
           element: <PropertyDetails></PropertyDetails>,
-          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+          loader: ({params})=> fetch(`https://nesttree-server.vercel.app/property/${params.id}`)
         },
         {
           path: 'allProperties/propertyDetails/:id',
           element: <PropertyDetails></PropertyDetails>,
-          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+          loader: ({params})=> fetch(`https://nesttree-server.vercel.app/property/${params.id}`)
         },
         {
           path:'support',
@@ -84,12 +84,12 @@ const router = createBrowserRouter([
         {
           path: 'wishlist/propertyDetails/:id',
           element: <PropertyDetails></PropertyDetails>,
-          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+          loader: ({params})=> fetch(`https://nesttree-server.vercel.app/property/${params.id}`)
         },
         {
           path: 'propertyBought/propertyDetails/:id',
           element: <PropertyDetails></PropertyDetails>,
-          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+          loader: ({params})=> fetch(`https://nesttree-server.vercel.app/property/${params.id}`)
         },
         {
           path: 'wishlist/makeOffer/:id',
@@ -124,7 +124,7 @@ const router = createBrowserRouter([
         {
           path: 'updateProperty/:id',
           element: <UpdateProperty></UpdateProperty>,
-          loader: ({params})=> fetch(`http://localhost:3000/property/${params.id}`)
+          loader: ({params})=> fetch(`https://nesttree-server.vercel.app/property/${params.id}`)
         },
         {
           path: 'soldProperties',

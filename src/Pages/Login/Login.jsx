@@ -45,7 +45,7 @@ const Login = () => {
     return (
         <div>
             <Helmet>
-                <title>NestTree | SignUp</title>
+                <title>NestTree || LogIn</title>
             </Helmet>
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">

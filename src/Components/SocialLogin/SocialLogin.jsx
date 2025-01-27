@@ -2,6 +2,7 @@ import { FaGoogle } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import { FcGoogle } from "react-icons/fc";
 
 
 const SocialLogin = () => {
@@ -33,9 +34,9 @@ const SocialLogin = () => {
     return (
         <div>
             <div>
-                <button onClick={handleGoogleSignUp} className="btn w-full">
-                    <FaGoogle></FaGoogle>
-                    Google
+                <button onClick={handleGoogleSignUp} className="btn btn-outline w-10/12 mx-auto mt-6 flex items-center justify-center gap-2">
+                    <FcGoogle className="text-2xl"></FcGoogle>
+                    Sign Up with Google
                 </button>
             </div>
         </div>
