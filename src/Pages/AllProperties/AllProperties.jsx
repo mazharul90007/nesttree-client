@@ -4,10 +4,20 @@ import useVerifiedProperties from '../../Hooks/useVerifiedProperties';
 import { MdVerifiedUser } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AiOutlineDollar } from 'react-icons/ai';
+import { useState } from 'react';
 
 const AllProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
+    console.log(verifiedProperties);
+    const [searchProperty, setSearchProperty] = useState();
 
+    const sortedProperties = [...verifiedProperties].sort((a,b) => a.minPrice - b.minPrice)
+    const filteredProperties = sortedProperties.filter(property =>
+        searchProperty
+            ? property.location.toLowerCase().includes(searchProperty.toLowerCase())
+            : true
+    );
+    
     return (
         <div className="pt-20">
             <div>
@@ -25,7 +35,12 @@ const AllProperties = () => {
                                 Your Journey to the Perfect Nest <br /> Begins Here.
                             </h1>
                             <label className="input input-bordered flex items-center mx-auto gap-2 max-w-sm mt-10 rounded-3xl border border-white shadow-xl">
-                                <input type="text" className="grow" placeholder="Search by District" />
+                                <input 
+                                type="text" 
+                                className="grow"
+                                value={searchProperty}
+                                onChange={(e)=> setSearchProperty(e.target.value)} 
+                                placeholder="Search by Location" />
                                 <div className="text-primary border-2 border-primary p-2 rounded-full cursor-pointer"><FaSearch /></div>
                             </label>
                         </div>
@@ -38,7 +53,7 @@ const AllProperties = () => {
                 {/* Property Cards */}
                 <div className='md:col-span-9 flex flex-col gap-4'>
                     {
-                        verifiedProperties.map(property =>
+                        filteredProperties.map(property =>
                             <div key={property._id} className="border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative p-2">
                                 {/* Image Section */}
                                 <div className='absolute top-2 right-2 text-xl text-green-600'>

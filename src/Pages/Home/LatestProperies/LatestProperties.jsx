@@ -8,7 +8,7 @@ import { AiOutlineDollar } from "react-icons/ai";
 
 const LatestProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
-    console.log(verifiedProperties)
+    // console.log(verifiedProperties)
 
 
     return (
