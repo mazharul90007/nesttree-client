@@ -14,14 +14,16 @@ const Review = () => {
         }
     });
 
+    const sortedReviews = [...reviews].sort((a, b) => new Date(b.postedTime) - new Date(a.postedTime))
+
     return (
-        <div className="mb-16">
+        <div className="mb-16 w-11/12 mx-auto">
             <h2 className="text-4xl font-semibold text-center mb-2">Real Stories, Real Experiences</h2>
             <p className="text-center text-sm text-gray-500 italic font-md mb-6">***User Reviews***</p>
             
             <div className="grid grid-cols-2 md:grid-cols-4">
                 {
-                    reviews.map(review => 
+                    sortedReviews.map(review => 
                         <div key={review._id} className="shadow">
                             <img src={review.reviewerImage
                             } alt="Image" className="w-36 h-36 rounded-full mx-auto" />
