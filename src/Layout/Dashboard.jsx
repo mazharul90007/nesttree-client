@@ -1,4 +1,4 @@
-import { FaCalendarAlt, FaHome, FaList, FaShoppingCart, FaUsers, FaWallet } from "react-icons/fa";
+import { FaBullhorn, FaCalendarAlt, FaHome, FaList, FaShoppingCart, FaUsers, FaWallet } from "react-icons/fa";
 import { TbHomePlus } from "react-icons/tb";
 import { IoPerson } from "react-icons/io5";
 import { HiCurrencyDollar } from "react-icons/hi";
@@ -34,6 +34,9 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink to={'/dashboard/manageReviews'}><FaList /> Manage Reviews</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={'/dashboard/advertiseProperty'}><FaBullhorn /> Advertise Property</NavLink>
                             </li>
                             
                         </>

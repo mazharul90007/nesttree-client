@@ -23,9 +23,9 @@ const PropertyBought = () => {
 
     const handleMakePayment = (property) => {
         navigate('payment', {state: {property}});
-        const amountInUSD = (parseInt(property.offerPrice) / 100)
-    //    setAmount(property.offerPrice)
-        setAmount(amountInUSD)
+        // const amountInUSD = (parseInt(property.offerPrice) / 100)
+       setAmount(property.offerPrice)
+        // setAmount(amountInUSD)
     }
     console.log(amount)
 
