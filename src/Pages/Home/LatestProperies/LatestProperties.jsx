@@ -55,13 +55,13 @@ const LatestProperties = () => {
 
                                     <div className="flex gap-4 mt-3 text-gray-500">
                                         <div className="flex items-center gap-1 text-sm">
-                                            <FaBed /> 3 beds
+                                            <FaBed /> {property.bed} beds
                                         </div>
                                         <div className="flex items-center gap-1 text-sm">
-                                            <FaBath /> 2 baths
+                                            <FaBath /> {property.bath} baths
                                         </div>
                                         <div className="flex items-center gap-1 text-sm">
-                                            <FaCarAlt /> 2 spaces
+                                            <FaCarAlt /> {property.parking} spaces
                                         </div>
                                     </div>
                                     <div>

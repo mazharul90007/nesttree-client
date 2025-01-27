@@ -23,7 +23,7 @@ const AdvertisementProperty = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 pt-4">
                 {
                     properties.map(property =>
-                        <div key={property._id} className="max-w-sm rounded-lg">
+                        <div key={property._id} className="max-w-sm rounded-lg shadow">
                             {/* Image Section */}
                             <div className="">
                                 <img
