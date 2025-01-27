@@ -1,44 +1,45 @@
-import { FaGoogle } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
-
+import { toast } from "react-toastify";
 
 const SocialLogin = () => {
     const { googleSignUp } = useAuth();
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
-
-    const handleGoogleSignUp = ()=>{
+    const handleGoogleSignUp = () => {
         googleSignUp()
-        .then(result =>{
-            console.log(result.user)
-            const userInfo = {
-                email: result.user?.email,
-                name: result.user?.displayName
-            }
-            axiosPublic.post('/users', userInfo)
-            .then(res =>{
-                const data = res.data;
-                console.log(data);
-                navigate('/');
+            .then(result => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName,
+                };
+                return axiosPublic.post('/users', userInfo);
             })
-        })
-        .catch(error =>{
-            console.log(error)
-        })
-    }
+            .then(res => {
+                console.log(res.data);
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.error(error);
+                toast.error("Google sign-in failed. Please try again.");
+            });
+    };
 
     return (
         <div>
-            <div>
-                <button onClick={handleGoogleSignUp} className="btn btn-outline w-10/12 mx-auto mt-6 flex items-center justify-center gap-2">
-                    <FcGoogle className="text-2xl"></FcGoogle>
-                    Sign Up with Google
-                </button>
-            </div>
+            <button
+                onClick={handleGoogleSignUp}
+                aria-label="Sign Up with Google"
+                className="btn btn-outline w-10/12 mx-auto mt-6 flex items-center justify-center gap-2"
+            >
+                <FcGoogle className="text-2xl" />
+                Sign Up with Google
+            </button>
         </div>
     );
 };

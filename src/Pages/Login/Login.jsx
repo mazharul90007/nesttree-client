@@ -2,26 +2,27 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
-
+import { useState } from "react";
+import { toast } from "react-toastify"; // Assuming you use react-toastify for toasts
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-
     const { googleSignUp, signIn } = useAuth();
+    const [errorMessage, setErrorMessage] = useState(""); // State for form error messages
 
     const handleGoogleSignUp = () => {
         googleSignUp()
             .then(() => {
-                // console.log(result)
+                // Google sign-up success
             })
-            .catch(() => {
-                // console.log(error)
-            })
-    }
+            .catch((error) => {
+                toast.error(error.message); // Show toast for error
+            });
+    };
 
     const location = useLocation();
     const navigate = useNavigate();
-    // console.log('sign in page', location)
-    const from = location.state || '/';
+    const from = location.state?.from || "/";
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -29,18 +30,28 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        // const user = {email, password}
-        // console.log(user);
-
+        // Attempt to sign in with Firebase
         signIn(email, password)
             .then(() => {
-                navigate(from)
+                navigate(from, { replace: true }); // Redirect on success
             })
-            .catch(() => {
-                // console.log(error);
-            })
+            .catch((error) => {
+                // Extract and handle Firebase errors
+                const errorCode = error.code;
+                let message = "An error occurred. Please try again.";
 
-    }
+                if (errorCode === "auth/user-not-found") {
+                    message = "Email not found. Please sign up first.";
+                } else if (errorCode === "auth/wrong-password") {
+                    message = "Incorrect password. Please try again.";
+                } else if (errorCode === "auth/invalid-email") {
+                    message = "Invalid email format.";
+                }
+
+                setErrorMessage(message); // Update state for inline error display
+                toast.error(message); // Optionally show toast
+            });
+    };
 
     return (
         <div>
@@ -58,7 +69,10 @@ const Login = () => {
                     </p>
 
                     {/* Google Sign-in Button */}
-                    <button onClick={handleGoogleSignUp} className="btn btn-outline w-full mt-6 flex items-center justify-center gap-2">
+                    <button
+                        onClick={handleGoogleSignUp}
+                        className="btn btn-outline w-full mt-6 flex items-center justify-center gap-2"
+                    >
                         <FcGoogle className="text-2xl" />
                         Sign in with Google
                     </button>
@@ -68,16 +82,17 @@ const Login = () => {
 
                     {/* Login Form */}
                     <form onSubmit={handleLogin}>
-                        {/* Username/Email Input */}
+                        {/* Email Input */}
                         <div className="form-control w-full mb-4">
                             <label className="label">
-                                <span className="label-text">Username or Email address *</span>
+                                <span className="label-text">Email address *</span>
                             </label>
                             <input
-                                type="text"
+                                type="email"
                                 name="email"
                                 placeholder="Your Email"
                                 className="input input-bordered w-full"
+                                required
                             />
                         </div>
 
@@ -91,18 +106,14 @@ const Login = () => {
                                 name="password"
                                 placeholder="************"
                                 className="input input-bordered w-full"
+                                required
                             />
                         </div>
 
-                        {/* Remember Me and Forgot Password */}
-                        <div className="flex items-center justify-between mb-6">
-                            <div
-                                href=""
-                                className="text-sm text-blue-600 hover:underline font-medium cursor-pointer"
-                            >
-                                Forgot Password
-                            </div>
-                        </div>
+                        {/* Inline Error Message */}
+                        {errorMessage && (
+                            <p className="text-red-500 text-sm mb-4">{errorMessage}</p>
+                        )}
 
                         {/* Submit Button */}
                         <button className="btn btn-primary w-full">Login</button>
@@ -112,7 +123,7 @@ const Login = () => {
                     <p className="text-center text-sm text-gray-500 mt-6">
                         Don’t have an account?{" "}
                         <Link
-                            to={'/signUp'}
+                            to={"/signUp"}
                             className="text-blue-600 font-medium underline hover:text-blue-700"
                         >
                             Sign up

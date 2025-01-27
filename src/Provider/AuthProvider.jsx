@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import auth from "../../firebase.config";
 import PropTypes from "prop-types";
+import { ToastContainer } from "react-toastify";
 
 
 export const AuthContext = createContext(null);
@@ -50,6 +51,9 @@ const AuthProvider = ({ children }) => {
             photoURL: photoURL
         })
     }
+
+    //Delete a User
+     
 
     //Observe current User existence
     useEffect(() => {
@@ -99,7 +103,9 @@ const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
+            <ToastContainer />
         </AuthContext.Provider>
+        
     );
 };
 
