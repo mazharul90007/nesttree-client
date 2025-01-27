@@ -3,6 +3,7 @@ import Banner from "../../Components/Banner/Banner";
 import LatestProperties from "./LatestProperies/LatestProperties";
 import AdvertisementProperty from "./AdvertisementPropertySection/AdvertisementProperty";
 import Facilities from "./Facilities/Facilities";
+import Review from "./Review/Review";
 
 
 
@@ -22,6 +23,7 @@ const Home = () => {
             <div className="bg-[#F0E2D5]">
                 <Facilities></Facilities>
             </div>
+            <Review></Review>
         </div>
     );
 };
