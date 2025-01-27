@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { RiSpam2Line } from "react-icons/ri";
+import { deleteUser, getAuth } from "firebase/auth";
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -12,6 +13,7 @@ const ManageUsers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
+            console.log(res.data)
             return res.data;
         }
     })
@@ -97,6 +99,15 @@ const ManageUsers = () => {
                 axiosSecure.delete(`/users/${user._id}`)
                     .then(res => {
                         const data = res.data;
+
+                        //Delete User from firebase
+                        const auth = getAuth();
+                        const userToDelete = auth.getUserByEmail(user?.email)
+
+                        deleteUser(userToDelete)
+                        .then(()=>{})
+                        .catch(error => console.log(error))
+
                         if (data.deletedCount > 0) {
                             refetch();
                             Swal.fire({

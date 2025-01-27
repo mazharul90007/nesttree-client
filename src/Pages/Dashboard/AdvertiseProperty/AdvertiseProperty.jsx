@@ -47,9 +47,8 @@ const AdvertiseProperty = () => {
 
     return (
         <div>
-            <div className=" border border-amber-600 p-4 w-fit flex gap-3 rounded mx-auto my-10">
-                <h2 className="text-4xl border-r-2 border-amber-600 pr-3">Advertised Properties</h2>
-                <p className="text-4xl font-bold text-amber-700">{ }</p>
+            <div className=" border border-amber-600 p-4 w-fit rounded mx-auto my-10">
+                <h2 className="text-4xl">Advertise a Property</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">

@@ -1,11 +1,15 @@
+import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
+import pageNotFound from "../../../public/404.json"
 
 
 const Error = () => {
     return (
-        <div className="text-center my-24">
-            <h2 className="text-5xl text-purple-500 font-semibold">This is Error Page</h2>
-            <Link to={'/'}><button className="btn btn-warning my-10">Back</button></Link>
+        <div className="text-center my-6 max-h-screen">
+            <div >
+                <Lottie animationData={pageNotFound} className="h-[500px]"></Lottie>
+            </div>
+            <Link to={'/'}><button className="btn btn-warning">Go Home</button></Link>
         </div>
     );
 };
