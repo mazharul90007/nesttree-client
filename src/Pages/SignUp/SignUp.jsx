@@ -126,36 +126,41 @@ const Registration = () => {
                                     className="input input-bordered" />
                                 {errors.name && <span className="text-red-600">*Email is required</span>}
                             </div>
-
+                            {/* Password Field */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password"
+                                <input
+                                    type="password"
                                     placeholder="password"
                                     {...register("password", {
                                         required: true,
-                                        minLength: 6,
-                                        maxLength: 20,
-                                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/
+                                        minLength: {
+                                            value: 6,
+                                            message: "Password must be at least 6 characters",
+                                        },
+                                        validate: {
+                                            hasUppercase: (value) =>
+                                                /[A-Z]/.test(value) || "Password must have at least one capital letter",
+                                            hasSpecialChar: (value) =>
+                                                /[@$!%*?&]/.test(value) || "Password must have at least one special character",
+                                        },
                                     })}
                                     name="password"
-                                    className="input input-bordered" />
-                                {errors.password?.type === "required" && (
-                                    <p className="text-red-600">Password is required</p>
+                                    className="input input-bordered"
+                                />
+                                {errors.password && (
+                                    <p className="text-red-600">{errors.password.message}</p>
                                 )}
-                                {errors.password?.type === "minLength" && (
-                                    <p className="text-red-600">Password must be at least 6 character</p>
+                                {errors.password?.type === "hasUppercase" && (
+                                    <p className="text-red-600">{errors.password.message}</p>
                                 )}
-
-                                {errors.password?.type === "maxLength" && (
-                                    <p className="text-red-600">Password must be less than 20 character</p>
-                                )}
-
-                                {errors.password?.type === "pattern" && (
-                                    <p className="text-red-600">Password must have at least a lowercase, a uppercase and a special character</p>
+                                {errors.password?.type === "hasSpecialChar" && (
+                                    <p className="text-red-600">{errors.password.message}</p>
                                 )}
                             </div>
+
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign Up</button>
                             </div>
