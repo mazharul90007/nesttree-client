@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import logo from "../../../assets/icons/logo.png"
 
 
 const Navbar = () => {
@@ -67,9 +68,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link to={'/'}>
-                        <div className="flex items-center">
-                            <img className="h-8 w-8" src='' alt="" />
-                            <p className="text-2xl text-amber-700 font-bold hidden md:block">NestTree</p>
+                        <div className="flex items-center gap-1">
+                            <img className="h-8 w-8" src={logo} alt="Logo" />
+                            <p className="text-2xl text-primary font-bold hidden md:block"> NestTree</p>
                         </div>
                         {/* <button className="btn btn-ghost text-2xl">Recommendo</button> */}
                     </Link>
