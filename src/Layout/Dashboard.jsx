@@ -19,7 +19,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-12">
             {/* Dashboard SideBar */}
             <div className="md:col-span-3 md:min-h-screen bg-orange-200">
-                <ul className="menu space-y-4 text-xl font-semibold">
+                <ul className="menu space-y-4 text-lg font-semibold">
                     {
                         isAdmin ? <>
                             <li>
