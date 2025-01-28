@@ -10,7 +10,7 @@ import bata from "../../assets/ads/bata.gif";
 
 const AllProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
-    console.log(verifiedProperties);
+    // console.log(verifiedProperties);
     const [searchProperty, setSearchProperty] = useState();
     const [sortByPrice, setSortByPrice] = useState(false);
 

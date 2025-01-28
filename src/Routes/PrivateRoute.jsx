@@ -9,8 +9,9 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
     if(loading){
-        return <div className="my-36 w-full flex justify-center">
+        return <div className="my-36 w-full flex-col justify-center text-center items-center">
             <progress className="progress w-56"></progress>
+            <p className="mt-4 text-gray-600">Loading, please wait...</p>
         </div>
     }
     if (user){
