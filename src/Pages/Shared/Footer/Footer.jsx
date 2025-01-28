@@ -1,7 +1,9 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const Footer = () => {
+    const {user} = useAuth();
     return (
         <div>
             <footer className="bg-gray-800 text-white py-6">
@@ -18,7 +20,7 @@ const Footer = () => {
                                     Home
                                 </p>
                             </Link>
-                            <Link to={'/allProperties'}>
+                            <Link to={ user?.email ? '/allProperties' : '/login'}>
                                 <p className="px-4 py-2 text-gray-300 hover:text-white">
                                     Properties
                                 </p>
