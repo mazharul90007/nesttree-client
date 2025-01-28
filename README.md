@@ -5,7 +5,13 @@ Nesttree is a dynamic marketplace where users can browse, list, and manage prope
 ---
 
 ## 🌟 **Project Purpose**
-The purpose of this project is to build a comprehensive real estate platform where users can search, list, and manage properties. The platform includes a multi-role system, real-time property updates, secure payments, and more, to help users make informed decisions and streamline the property management process.
+The purpose of this project is to build a comprehensive real estate platform where users can search, list, and manage properties. The platform includes a multi-role system, real-time property updates, secure payments, and more, to help users make informed decisions and streamline the property management process..
+
+---
+
+## Admin Login Credentials
+- **AdminEmail:** sourabh@gmail.com 
+- **Password:** @Sourabh
 
 ---
 
