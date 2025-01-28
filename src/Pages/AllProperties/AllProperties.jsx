@@ -5,6 +5,8 @@ import { MdVerifiedUser } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AiOutlineDollar } from 'react-icons/ai';
 import { useState } from 'react';
+import robi from "../../assets/ads/robi.gif"
+import bata from "../../assets/ads/bata.gif";
 
 const AllProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
@@ -24,7 +26,7 @@ const AllProperties = () => {
         <div className="pt-20">
             <div>
                 <div
-                    className="h-[400px] w-full bg-cover bg-center relative"
+                    className="h-[500px] w-full bg-cover bg-center relative"
                     style={{ backgroundImage: `url(${banner})` }}
                 >
                     {/* Overlay Layer */}
@@ -32,8 +34,8 @@ const AllProperties = () => {
 
                     {/* Text Content */}
                     <div className="relative z-10 flex items-center justify-center h-full">
-                        <div className='absolute '>
-                            <h1 className="text-white  text-3xl md:text-5xl mt-5 font-bold text-center">
+                        <div className='absolute top-10'>
+                            <h1 className="text-white text-3xl md:text-5xl mt-5 font-bold text-center  ">
                                 Your Journey to the Perfect Nest <br /> Begins Here.
                             </h1>
                             <label className="input input-bordered flex items-center mx-auto gap-2 max-w-sm mt-10 rounded-3xl border border-white shadow-xl">
@@ -52,8 +54,8 @@ const AllProperties = () => {
 
             <div className='w-11/12 mx-auto'>
                 <div className='mt-16'>
-                    <button onClick={()=>setSortByPrice(!sortByPrice)} className={sortByPrice ? 'bg-amber-50 text-red-500 py-1 px-2 border border-amber-500 rounded' : 'bg-amber-50 text-green-600 py-1 px-2 border border-amber-500 rounded'}>
-                    {sortByPrice ? 'Clear Sort' : 'Sort by Price'}
+                    <button onClick={() => setSortByPrice(!sortByPrice)} className={sortByPrice ? 'bg-amber-50 text-red-500 py-1 px-2 border border-amber-500 rounded' : 'bg-amber-50 text-green-600 py-1 px-2 border border-amber-500 rounded'}>
+                        {sortByPrice ? 'Clear Sort' : 'Sort by Price'}
                     </button>
                 </div>
                 <div className='grid md:grid-cols-12 my-10 '>
@@ -122,8 +124,13 @@ const AllProperties = () => {
                     </div>
 
                     {/* Ad Section */}
-                    <div className='md:col-span-3'>
-
+                    <div className='md:col-span-3 px-2'>
+                        <div>
+                            <img src={robi} alt="Ad" className="w-full h-auto" />
+                        </div>
+                        <div>
+                            <img src={bata} alt="Ad" className="w-full h-auto my-6" />
+                        </div>
                     </div>
                 </div>
             </div>

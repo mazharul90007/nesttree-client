@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { AiTwotoneSafetyCertificate } from "react-icons/ai";
-import { FaBath, FaBed, FaCar } from "react-icons/fa";
+import { FaBath, FaBed, FaCar, FaHome } from "react-icons/fa";
 
 
 const AdvertisementProperty = () => {
@@ -18,18 +18,19 @@ const AdvertisementProperty = () => {
 
     return (
         <div className="my-16">
-            <h2 className="text-4xl text-center font-semibold">Prime Properties to Explore</h2>
-            <p className="text-xs text-gray-400 italic text-center">Advertisement</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 pt-4">
+            <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">Prime Properties to Explore</h2>
+            <p className="text-xs text-gray-400 italic text-center mt-2">Advertisement</p>
+            <div className="divider text-3xl"><FaHome /></div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10">
                 {
-                    properties.map(property =>
-                        <div key={property._id} className="max-w-sm rounded-lg shadow">
+                    properties.slice(0,6).map(property =>
+                        <div key={property._id} className="rounded-lg shadow">
                             {/* Image Section */}
                             <div className="">
                                 <img
                                     src={property.image}
                                     alt="Property"
-                                    className="rounded-t-lg w-full object-cover"
+                                    className="rounded-t-lg w-full object-cover h-96"
                                 />
                             </div>
 

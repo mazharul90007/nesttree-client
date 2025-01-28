@@ -11,7 +11,7 @@ const ManageReviews = () => {
         queryKey: ['allReviews'],
         queryFn: async () => {
             const res = await axiosSecure.get('/reviews');
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
     })

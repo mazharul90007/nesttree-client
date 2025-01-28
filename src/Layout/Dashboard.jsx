@@ -16,10 +16,10 @@ const Dashboard = () => {
     const [isAgent] = useAgent();
 
     return (
-        <div className="flex">
+        <div className="grid grid-cols-1 md:grid-cols-12">
             {/* Dashboard SideBar */}
-            <div className="w-64 min-h-screen bg-orange-200">
-                <ul className="menu space-y-4 text-md font-semibold">
+            <div className="md:col-span-3 md:min-h-screen bg-orange-200">
+                <ul className="menu space-y-4 text-xl font-semibold">
                     {
                         isAdmin ? <>
                             <li>
@@ -90,7 +90,7 @@ const Dashboard = () => {
             </div>
 
             {/* Dashboard Content */}
-            <div className="flex-1 p-2">
+            <div className="flex-1 p-2 md:col-span-9">
                 <Outlet></Outlet>
             </div>
         </div>

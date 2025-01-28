@@ -1,8 +1,10 @@
-import { FaBath, FaBed, FaCarAlt } from "react-icons/fa";
+import { FaBath, FaBed, FaCarAlt, FaHome } from "react-icons/fa";
 import useVerifiedProperties from "../../../Hooks/useVerifiedProperties";
 import { MdVerifiedUser } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AiOutlineDollar } from "react-icons/ai";
+import robi from "../../../assets/ads/robi.gif";
+import bata from "../../../assets/ads/bata.gif";
 
 
 
@@ -12,15 +14,18 @@ const LatestProperties = () => {
 
 
     return (
-        <div className="my-12">
+        <div className="my-20">
 
-            <div className='grid md:grid-cols-12 my-16'>
+            <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">Featured Properties - Explore Our Latest Listings</h2>
+            <p className="w-10/12 text-center text-xl md:text-2xl font-medium mx-auto text-gray-500"> Discover the finest homes and investment opportunities with our most recent property additions.</p>
+            <div className="divider text-3xl"><FaHome /></div>
 
+            <div className='grid md:grid-cols-12 my-10 gap-4'>
                 {/* Property Cards */}
                 <div className='md:col-span-9 flex flex-col gap-4'>
                     {
-                        verifiedProperties.map(property =>
-                            <div key={property._id} className="border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative p-2">
+                        verifiedProperties.slice(0, 6).map(property =>
+                            <div key={property._id} className="border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative py-4">
                                 {/* Image Section */}
                                 <div className='absolute top-2 right-2 text-xl text-green-600'>
                                     <MdVerifiedUser />
@@ -78,8 +83,13 @@ const LatestProperties = () => {
                 </div>
 
                 {/* Ad Section */}
-                <div className='md:col-span-3'>
-
+                <div className='md:col-span-3 px-2'>
+                    <div>
+                        <img src={robi} alt="Ad" className="w-full h-auto" />
+                    </div>
+                    <div>
+                        <img src={bata} alt="Ad" className="w-full h-auto my-6" />
+                    </div>
                 </div>
             </div>
         </div>

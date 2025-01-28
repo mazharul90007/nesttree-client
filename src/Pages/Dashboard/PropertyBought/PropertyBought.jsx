@@ -22,16 +22,19 @@ const PropertyBought = () => {
     });
 
     const handleMakePayment = (property) => {
-        navigate('payment', {state: {property}});
+        navigate('payment', { state: { property } });
         // const amountInUSD = (parseInt(property.offerPrice) / 100)
-       setAmount(property.offerPrice)
+        setAmount(property.offerPrice)
         // setAmount(amountInUSD)
     }
     console.log(amount)
 
     return (
         <div>
-            <h3>This is my Offered Property</h3>
+            <div className=" border border-amber-600 p-4 w-fit flex gap-3 rounded mx-auto  my-10">
+                <h2 className=" text-2xl md:text-4xl font-semibold border-r-2 border-amber-600 pr-3"> My Favourtie Properties</h2>
+                <p className="text-4xl font-bold text-amber-700">{requestedProperties.length}</p>
+            </div>
             <div className="my-12">
 
                 <div className='grid grid-cols-1 my-16 w-11/12 mx-auto'>
@@ -82,7 +85,7 @@ const PropertyBought = () => {
                                                         <p className="bg-orange-200 text-amber-700 py-1 px-2 border border-amber-200 rounded">Pending</p>
                                                         : property.status === "accepted" ?
                                                             (
-                                                                <div  className="flex gap-3 items-center">
+                                                                <div className="flex gap-3 items-center">
                                                                     <p className="bg-green-200 text-amber-700 py-1 px-2 border border-amber-200 rounded w-fit">Accepted</p>
 
                                                                     <button onClick={() => handleMakePayment(property)} className="bg-purple-200 text-orange-700 font-semibold px-2 py-1 rounded hover:scale-95 transform transition-transform">Make Payment</button>

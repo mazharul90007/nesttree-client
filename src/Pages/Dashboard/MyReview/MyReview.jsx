@@ -51,7 +51,10 @@ const MyReview = () => {
 
     return (
         <div>
-            <div></div>
+            <div className=" border border-amber-600 p-4 w-fit flex gap-3 rounded mx-auto  my-10">
+                <h2 className="text-2xl md:text-4xl font-semibold border-r-2 border-amber-600 pr-3"> My Reviews</h2>
+                <p className="text-4xl font-bold text-amber-700">{reviews.length}</p>
+            </div>
             <div className=" flex flex-col gap-2">
                 {
                     reviews.map(review => 

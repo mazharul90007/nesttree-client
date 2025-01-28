@@ -60,6 +60,10 @@ const Wishlist = () => {
 
     return (
         <div className="my-12">
+            <div className=" border border-amber-600 p-4 w-fit flex gap-3 rounded mx-auto  my-10">
+                <h2 className="text-2xl md:text-4xl font-semibold border-r-2 border-amber-600 pr-3"> Interested to Buy</h2>
+                <p className="text-4xl font-bold text-amber-700">{wishlistProperties.length}</p>
+            </div>
 
             <div className='grid grid-cols-1 my-16 w-11/12 mx-auto'>
 

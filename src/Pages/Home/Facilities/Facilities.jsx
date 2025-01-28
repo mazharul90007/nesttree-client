@@ -5,7 +5,7 @@ import clock from "../../../assets/icons/clock.png"
 const Facilities = () => {
     return (
         <div className="my-16 py-16 w-11/12 mx-auto">
-            <h2 className="text-4xl font-semibold text-center mb-5 ">How Nesttree Simplifies Property Buying</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">How Nesttree Simplifies Property Buying</h2>
             <div className="grid md:grid-cols-3 gap-6">
                 {/* column1 */}
                 <div className="md:col-span-1 md:px-6 text-center space-y-3">
