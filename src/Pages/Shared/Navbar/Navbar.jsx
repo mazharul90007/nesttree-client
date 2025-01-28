@@ -14,7 +14,7 @@ const Navbar = () => {
         queryKey: ['userProfile'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/${user?.email}`);
-            console.log(res.data)
+            // console.log(res.data)
             return res?.data;
 
         }
@@ -40,7 +40,7 @@ const Navbar = () => {
                 <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={ userProfile.role === 'admin' ? '/dashboard/adminProfile' : userProfile.role === 'agent' ? '/dashboard/agentProfile' : '/dashboard/userProfile'}><li>Dashboard</li></NavLink>
             </>
         }
-        <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/contact'}><li>Contact Us</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/support'}><li>Contact Us</li></NavLink>
     </>
     return (
         <div className="w-full absolute z-50 backdrop-blur-sm bg-white/10">
@@ -76,7 +76,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className=" flex flex-wrap gap-3 menu-horizontal px-1 text-[16px]">
+                    <ul className=" flex flex-wrap gap-3 menu-horizontal px-1 text-lg">
                         {links}
                     </ul>
                 </div>

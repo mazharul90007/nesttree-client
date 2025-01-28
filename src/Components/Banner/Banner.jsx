@@ -3,7 +3,7 @@ import banner from '../../assets/Banner/banner6.jpg';
 const Banner = () => {
     return (
         <div
-            className="h-[500px] w-full bg-cover bg-center relative"
+            className="h-[550px] w-full bg-cover bg-center relative"
             style={{ backgroundImage: `url(${banner})` }}
         >
             {/* Overlay Layer */}
