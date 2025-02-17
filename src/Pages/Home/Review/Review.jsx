@@ -9,7 +9,7 @@ const Review = () => {
         queryKey: ['reviews'],
         queryFn: async () => {
             const res = await axiosPublic.get('/reviews')
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
     });

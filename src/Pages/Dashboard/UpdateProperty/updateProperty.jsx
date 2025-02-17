@@ -19,7 +19,7 @@ const UpdateProperty = () => {
 
 
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
         //image upload to imgbb and then get an url
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -52,7 +52,7 @@ const UpdateProperty = () => {
             }
             //
             const propertyRes = await axiosSecure.patch(`/property/${property._id}`, propertyInfo);
-            console.log(propertyRes.data)
+            // console.log(propertyRes.data)
             if (propertyRes.data.modifiedCount > 0) {
                 reset();
                 //show success popup
@@ -65,10 +65,10 @@ const UpdateProperty = () => {
                 });
             }
         }
-        console.log('with image url', res.data)
+        // console.log('with image url', res.data)
     }
 
-    console.log(property)
+    // console.log(property)
     return (
         <div>
             <div>

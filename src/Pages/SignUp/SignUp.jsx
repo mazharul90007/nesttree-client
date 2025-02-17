@@ -28,7 +28,7 @@ const Registration = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser)
+                // console.log(loggedUser)
 
                 //Update User Name and PhotoURL
                 updateUserProfile(data.name, data.photoURL)
@@ -46,7 +46,7 @@ const Registration = () => {
                     .then(res => {
                         const data = res.data;
                         if (data.insertedId) {
-                            console.log('user added to the database');
+                            // console.log('user added to the database');
                             reset();
                             Swal.fire({
                                 position: "top-end",

@@ -16,14 +16,14 @@ const ManageUsers = () => {
             return res.data;
         }
     })
-    console.log(currentUser)
+    // console.log(currentUser)
 
     // Make User Admin
     const handleMakeAdmin = (user) => {
         axiosSecure.patch(`/users/${user._id}`, { role: 'admin' })
             .then(res => {
                 const data = res.data;
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({
@@ -41,7 +41,7 @@ const ManageUsers = () => {
         axiosSecure.patch(`/users/${user._id}`, { role: 'agent' })
             .then(res => {
                 const data = res.data;
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({
@@ -60,7 +60,7 @@ const ManageUsers = () => {
         axiosSecure.patch(`/users/${user._id}`, { role: 'fraud' })
             .then(res => {
                 const data = res.data;
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     axiosSecure.delete(`/fraudProperties/${user.email}`)
                         .then(res => {
@@ -81,7 +81,7 @@ const ManageUsers = () => {
 
 
     const handleDeleteUser = (user) => {
-        console.log(user)
+        // console.log(user)
 
         Swal.fire({
             title: "Are you sure?",

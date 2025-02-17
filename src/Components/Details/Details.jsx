@@ -67,11 +67,11 @@ const Details = ({ property }) => {
         const agentName = property.agentName;
         const reviewInfo = { review, reviewPropertyId, reviewerName, reviewerImage, reviewProperty, reviewerEmail, postedTime, agentName }
 
-        console.log(reviewInfo);
+        // console.log(reviewInfo);
 
         //Add review to the server
         const reviewRes = await axiosSecure.post('/reviews', reviewInfo);
-        console.log(reviewRes.data)
+        // console.log(reviewRes.data)
         if (reviewRes.data.insertedId) {
             //show success popup
             Swal.fire({
@@ -94,7 +94,7 @@ const Details = ({ property }) => {
         wishlistProperty.userEmail = user.email;
         wishlistProperty.propertyId = _id;  // Use _id as propertyId in wishlist
 
-        console.log(wishlistProperty);
+        // console.log(wishlistProperty);
 
         try {
             const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);

@@ -13,14 +13,14 @@ const MyReview = () => {
         queryKey: ['reviews'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/myReviews/${user.email}`)
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
 
         }
     });
 
     const handleReviewDelete = (id)=>{
-        console.log(id)
+        // console.log(id)
          Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",

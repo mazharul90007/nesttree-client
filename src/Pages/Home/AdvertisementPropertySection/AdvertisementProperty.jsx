@@ -11,7 +11,7 @@ const AdvertisementProperty = () => {
         queryKey: ['properties'],
         queryFn: async () => {
             const res = await axiosPublic.get('/advertisedProperties')
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
     });

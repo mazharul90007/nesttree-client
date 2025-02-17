@@ -11,7 +11,7 @@ const ManageProperties = () => {
             .then(res => {
                 const data = res.data;
                 refetch();
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
 
                     Swal.fire({
@@ -30,7 +30,7 @@ const ManageProperties = () => {
             .then(res => {
                 const data = res.data;
                 refetch();
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({

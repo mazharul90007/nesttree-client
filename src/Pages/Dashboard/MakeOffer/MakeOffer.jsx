@@ -30,11 +30,11 @@ const MakeOffer = () => {
             propertyImage: property?.image,
             status: 'pending'
         }
-        console.log(propertyInfo)
+        // console.log(propertyInfo)
 
         //Update data to server
         const propertyRes = await axiosSecure.post('/offer', propertyInfo);
-        console.log(propertyRes.data)
+        // console.log(propertyRes.data)
         if (propertyRes.data.insertedId) {
             reset();
             //show success popup

@@ -13,7 +13,7 @@ const ManageRequestProperty = () => {
         queryKey: ['requestedProperties'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/offer/${user.email}`)
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
     });
@@ -21,11 +21,11 @@ const ManageRequestProperty = () => {
 
 
     const handleAccept = (property) => {
-        console.log(property._id)
+        // console.log(property._id)
         axiosSecure.patch(`/requestedOffer/${property._id}`, { status: "accepted" })
             .then(res => {
                 const data = res.data;
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     axiosSecure.patch(`/rejectRequestedOffer`, null, {
                         params: {
@@ -51,11 +51,11 @@ const ManageRequestProperty = () => {
     };
 
     const handleReject = (property) => {
-        console.log(property._id)
+        // console.log(property._id)
         axiosSecure.patch(`/requestedOffer/${property._id}`, { status: "rejected" })
             .then(res => {
                 const data = res.data;
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     refetch();
                     Swal.fire({

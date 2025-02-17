@@ -28,7 +28,7 @@ const Wishlist = () => {
     }
 
     const handleDeleteWishlistProperty = (property) => {
-        console.log(property)
+        // console.log(property)
 
         Swal.fire({
             title: "Are you sure?",

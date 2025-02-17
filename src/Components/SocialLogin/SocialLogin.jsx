@@ -20,12 +20,12 @@ const SocialLogin = () => {
                 };
                 return axiosPublic.post('/users', userInfo);
             })
-            .then(res => {
-                console.log(res.data);
+            .then(() => {
+                // console.log(res.data);
                 navigate(from, { replace: true });
             })
-            .catch(error => {
-                console.error(error);
+            .catch(() => {
+                // console.error(error);
                 toast.error("Google sign-in failed. Please try again.");
             });
     };

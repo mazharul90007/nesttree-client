@@ -6,14 +6,14 @@ const AdvertiseProperty = () => {
     const axiosSecure = useAxiosSecure();
 
     const verifiedProperties = useVerifiedProperties();
-    console.log(verifiedProperties)
+    // console.log(verifiedProperties)
 
     const handleAdAdvertise = async (property)=>{
         // Destructure to remove _id and keep the rest of the properties
                 const { _id, ...advertisedProperty } = property;
                 advertisedProperty.advertisementId = _id;  // Use _id as propertyId in advertiseProperty
         
-                console.log(advertisedProperty);
+                // console.log(advertisedProperty);
         
                 try {
                     const advertisRes = await axiosSecure.post('/advertisedProperties', advertisedProperty);

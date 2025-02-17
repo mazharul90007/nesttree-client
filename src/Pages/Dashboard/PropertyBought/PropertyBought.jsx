@@ -16,7 +16,7 @@ const PropertyBought = () => {
         queryKey: ['requestedProperties'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/myRequestedOffer/${user.email}`)
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
     });
