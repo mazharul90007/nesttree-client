@@ -79,7 +79,7 @@ const Login = () => {
                     </div>
 
                     <div className="md:col-span-7 bg-white p-8">
-                        <h2 className="text-center text-blue-600 font-medium text-sm">
+                        <h2 className="text-center text-amber-600 font-medium text-sm">
                             Welcome back!
                         </h2>
                         <h1 className="text-center text-2xl font-bold mt-1">Member Login</h1>
@@ -90,7 +90,7 @@ const Login = () => {
                         <div className="divider">*</div>
 
                         {/* Demo Credential */}
-                        <button onClick={() => setShowCredential(!showCredential)} className=" mb-3 py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50">
+                        <button onClick={() => setShowCredential(!showCredential)} className=" mb-3 py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50 hover:scale-95 transition-transform transform duration-300">
                             {showCredential ? 'Hide Credentials' : 'Show Demo Credentials'}
                         </button>
 
