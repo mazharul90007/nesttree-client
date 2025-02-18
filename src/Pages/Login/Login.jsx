@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
     const { googleSignUp, signIn } = useAuth();
     const [errorMessage, setErrorMessage] = useState(""); // State for form error messages
+    const [credential, setCredential] = useState("");
+    const [showCredential, setShowCredential] = useState(false)
 
     const handleGoogleSignUp = () => {
         googleSignUp()
@@ -53,6 +55,10 @@ const Login = () => {
             });
     };
 
+    const credentialHandle = (role) =>{
+        setCredential(role)
+    }
+
     return (
         <div>
             <Helmet>
@@ -71,14 +77,56 @@ const Login = () => {
                     {/* Google Sign-in Button */}
                     <button
                         onClick={handleGoogleSignUp}
-                        className="btn btn-outline w-full mt-6 flex items-center justify-center gap-2"
+                        className="py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50 w-full mt-2 justify-center gap-2 font-semibold"
                     >
                         <FcGoogle className="text-2xl" />
                         Sign in with Google
                     </button>
 
                     {/* Divider */}
-                    <div className="divider my-6">Or continue with</div>
+                    <div className="divider mt-6">Or continue with</div>
+
+                    {/* Demo Credential */}
+                    <button onClick={()=> setShowCredential(!showCredential)} className=" mb-3 py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50">
+                        {showCredential ? 'Hide Credentials' : 'Show Demo Credentials'}
+                    </button>
+
+                    {/* Credential box */}
+                    <div className={`${showCredential? 'grid grid-cols-12 border p-2 gap-2 rounded-lg': 'hidden'}`}>
+                        <div className="col-span-4 flex flex-col gap-1 text-gray-500">
+                            <button onClick={()=>credentialHandle("user")} className="btn-sm bg-amber-100 text-sm font-semibold hover:bg-amber-500 hover:scale-105 transition-transform transform duration-200">User</button>
+                            <button onClick={()=>credentialHandle("agent")} className="btn-sm bg-amber-200 text-sm font-semibold hover:bg-amber-500 hover:scale-105 transition-transform transform duration-200">Agent</button>
+                            <button onClick={()=>credentialHandle("admin")} className="btn-sm bg-amber-300 text-sm font-semibold hover:bg-amber-500 hover:scale-105 transition-transform transform duration-200">Admin</button>
+                        </div>
+                        <div className="col-span-8 border-l pl-2 flex items-center text-gray-600">
+                            {
+                                credential === 'user' ? 
+                                <div>
+                                    <p className="text-center text-xs italic font-semibold text-gray-400 divider p-0 m-0">USER</p>
+                                    <p>Email: sabbir@gmail.com</p>
+                                    <p>Password: @Sourabh</p>
+                                </div>
+                                :
+                                credential === 'agent' ?
+                                <div>
+                                    <p className="text-center text-xs italic font-semibold text-gray-400 divider p-0 m-0">AGENT</p>
+                                    <p>Email: sehjad@gmail.com</p>
+                                    <p>Password: @Sourabh</p>
+                                </div>
+                                :
+                                credential === 'admin' ?
+                                <div>
+                                    <p className="text-center text-xs italic font-semibold text-gray-400 divider p-0 m-0">ADMIN</p>
+                                    <p>Email: sourabh@gmail.com</p>
+                                    <p>Password: @Sourabh</p>
+                                </div>
+                                :
+                                <div>
+                                    <p>Click any role to see the login credentials</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
 
                     {/* Login Form */}
                     <form onSubmit={handleLogin}>
@@ -116,7 +164,7 @@ const Login = () => {
                         )}
 
                         {/* Submit Button */}
-                        <button className="btn btn-primary w-full">Login</button>
+                        <button className="py-2 px-3 border rounded-lg w-full bg-primary text-white">Login</button>
                     </form>
 
                     {/* Sign Up Link */}
@@ -124,7 +172,7 @@ const Login = () => {
                         Don’t have an account?{" "}
                         <Link
                             to={"/signUp"}
-                            className="text-blue-600 font-medium underline hover:text-blue-700"
+                            className="text-amber-600 font-semibold underline"
                         >
                             Sign up
                         </Link>
