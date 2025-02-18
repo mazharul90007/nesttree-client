@@ -35,7 +35,7 @@ const SocialLogin = () => {
             <button
                 onClick={handleGoogleSignUp}
                 aria-label="Sign Up with Google"
-                className="btn btn-outline w-10/12 mx-auto mt-6 flex items-center justify-center gap-2"
+                className="py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50 w-full mt-2 justify-center gap-2 font-semibold"
             >
                 <FcGoogle className="text-2xl" />
                 Sign Up with Google

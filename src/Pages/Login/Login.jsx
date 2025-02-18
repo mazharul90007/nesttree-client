@@ -1,26 +1,26 @@
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { toast } from "react-toastify"; // Assuming you use react-toastify for toasts
 import "react-toastify/dist/ReactToastify.css";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
-    const { googleSignUp, signIn } = useAuth();
+    const { signIn } = useAuth();
     const [errorMessage, setErrorMessage] = useState(""); // State for form error messages
     const [credential, setCredential] = useState("");
     const [showCredential, setShowCredential] = useState(false)
 
-    const handleGoogleSignUp = () => {
-        googleSignUp()
-            .then(() => {
-                // Google sign-up success
-            })
-            .catch((error) => {
-                toast.error(error.message); // Show toast for error
-            });
-    };
+    // const handleGoogleSignUp = () => {
+    //     googleSignUp()
+    //         .then(() => {
+    //             // Google sign-up success
+    //         })
+    //         .catch((error) => {
+    //             toast.error(error.message); // Show toast for error
+    //         });
+    // };
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -64,7 +64,7 @@ const Login = () => {
             <Helmet>
                 <title>NestTree || LogIn</title>
             </Helmet>
-            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="flex items-center justify-center min-h-screen ">
                 <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
                     <h2 className="text-center text-blue-600 font-medium text-sm">
                         Welcome back!
@@ -75,14 +75,7 @@ const Login = () => {
                     </p>
 
                     {/* Google Sign-in Button */}
-                    <button
-                        onClick={handleGoogleSignUp}
-                        className="py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50 w-full mt-2 justify-center gap-2 font-semibold"
-                    >
-                        <FcGoogle className="text-2xl" />
-                        Sign in with Google
-                    </button>
-
+                    <SocialLogin></SocialLogin>
                     {/* Divider */}
                     <div className="divider mt-6">Or continue with</div>
 

@@ -72,7 +72,6 @@ const Navbar = () => {
                             <img className="h-8 w-8" src={logo} alt="Logo" />
                             <p className="text-2xl text-primary font-bold hidden md:block"> NestTree</p>
                         </div>
-                        {/* <button className="btn btn-ghost text-2xl">Recommendo</button> */}
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
