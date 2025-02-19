@@ -12,17 +12,6 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState(""); // State for form error messages
     const [credential, setCredential] = useState("");
     const [showCredential, setShowCredential] = useState(false)
-
-    // const handleGoogleSignUp = () => {
-    //     googleSignUp()
-    //         .then(() => {
-    //             // Google sign-up success
-    //         })
-    //         .catch((error) => {
-    //             toast.error(error.message); // Show toast for error
-    //         });
-    // };
-
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || "/";

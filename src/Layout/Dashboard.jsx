@@ -7,6 +7,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
 import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
+import logo from "../assets/icons/logo.png"
+import useAuth from "../Hooks/useAuth";
 
 
 
@@ -14,11 +16,24 @@ const Dashboard = () => {
     //TODO: get isAdmin value from the database
     const [isAdmin] = useAdmin();
     const [isAgent] = useAgent();
+    const { user } = useAuth();
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-12">
             {/* Dashboard SideBar */}
-            <div className="md:col-span-3 md:min-h-screen bg-orange-200">
+            <div className="md:col-span-3 md:min-h-screen bg-orange-100 px-4">
+                <div className="flex items-center justify-center gap-1 pt-4">
+                    <img className="h-8 w-8" src={logo} alt="Logo" />
+                    <p className="text-2xl text-primary font-bold"> NestTree</p>
+                </div>
+                <div className="divider"></div>
+                {/* User Profile */}
+                <div className="flex flex-col items-center space-y-2 mb-4">
+                    <img src={user?.photoURL} alt="User Image" className="w-24 h-24 rounded-lg" />
+                    <h3 className="text-2xl font-bold">{user?.displayName}</h3>
+                    <p className="font-semibold text-gray-500">{user?.email}</p>
+                </div>
+                <div className="divider"></div>
                 <ul className="menu space-y-4 text-lg font-semibold">
                     {
                         isAdmin ? <>
@@ -38,7 +53,7 @@ const Dashboard = () => {
                             <li>
                                 <NavLink to={'/dashboard/advertiseProperty'}><FaBullhorn /> Advertise Property</NavLink>
                             </li>
-                            
+
                         </>
                             :
                             isAgent ?
@@ -90,7 +105,7 @@ const Dashboard = () => {
             </div>
 
             {/* Dashboard Content */}
-            <div className="flex-1 p-2 md:col-span-9">
+            <div className="flex-1 p-2 md:col-span-9 bg-blue-50">
                 <Outlet></Outlet>
             </div>
         </div>
