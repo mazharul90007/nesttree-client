@@ -20,7 +20,7 @@ const Home = () => {
                 <LatestProperties></LatestProperties>
                 <AdvertisementProperty></AdvertisementProperty>
             </div>
-            <div className="bg-[#F0E2D5]">
+            <div>
                 <Facilities></Facilities>
             </div>
             <Review></Review>
