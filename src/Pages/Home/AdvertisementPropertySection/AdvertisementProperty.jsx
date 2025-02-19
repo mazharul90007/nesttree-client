@@ -26,7 +26,7 @@ const AdvertisementProperty = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10">
                 {
                     properties.slice(0,6).map(property =>
-                        <div key={property._id} className="rounded-lg shadow">
+                        <div key={property._id} className={`rounded-lg shadow ${!dayTheme && 'bg-gray-600 text-gray-200'}`}>
                             {/* Image Section */}
                             <div className="">
                                 <img
@@ -42,8 +42,8 @@ const AdvertisementProperty = () => {
                                     <span className="text-xl font-bold">${property.minPrice} - {property.maxPrice}</span>
                                     <span className="badge badge-outline">{property.type}</span>
                                 </div>
-                                <p className="text-gray-600 text-sm">{property.location}</p>
-                                <div className="flex justify-between items-center mt-4 text-gray-500">
+                                <p className={`${dayTheme ? 'text-gray-600' : 'text-gray-200'} text-sm`}>{property.location}</p>
+                                <div className={`flex justify-between items-center mt-4 ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
                                     <div className="flex items-center space-x-4">
                                         <span className="flex items-center">
                                             <FaBed className="mr-1" /> {property.bed}
