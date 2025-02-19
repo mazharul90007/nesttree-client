@@ -19,7 +19,7 @@ const Review = () => {
     const sortedReviews = [...reviews].sort((a, b) => new Date(b.postedTime) - new Date(a.postedTime))
 
     return (
-        <div className="mb-16 w-11/12 mx-auto">
+        <div className="mb-8 w-11/12 mx-auto">
             <h2 className="text-4xl font-semibold text-center text-primary mb-2">Real Stories, Real Experiences</h2>
             <p className="text-center text-sm text-gray-500 italic font-md mb-16">***User Reviews***</p>
             

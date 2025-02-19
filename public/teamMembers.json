@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Maria Barlow",
+      "role": "Sales Executive",
+      "image": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      "name": "Jane Sutherland",
+      "role": "Real Estate Broker",
+      "image": "https://randomuser.me/api/portraits/women/10.jpg"
+    },
+    {
+      "name": "Eric Long",
+      "role": "Sales Agent",
+      "image": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      "name": "Lore Josh",
+      "role": "Commercial Broker",
+      "image": "https://randomuser.me/api/portraits/women/50.jpg"
+    }
+  ]

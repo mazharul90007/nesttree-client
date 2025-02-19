@@ -4,6 +4,8 @@ import LatestProperties from "./LatestProperies/LatestProperties";
 import AdvertisementProperty from "./AdvertisementPropertySection/AdvertisementProperty";
 import Facilities from "./Facilities/Facilities";
 import Review from "./Review/Review";
+import TeamMembers from "./TeamMembers/TeamMembers";
+import Support from "../Dashboard/Support/Support";
 
 
 
@@ -23,7 +25,9 @@ const Home = () => {
             <div>
                 <Facilities></Facilities>
             </div>
+            <TeamMembers></TeamMembers>
             <Review></Review>
+            <Support></Support>
         </div>
     );
 };

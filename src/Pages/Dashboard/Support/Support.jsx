@@ -1,12 +1,15 @@
+
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
 
 const Support = () => {
+  const {dayTheme} = useAuth()
     return (
-        <div className="bg-gray-50 py-20">
+        <div className={`py-8 ${!dayTheme && 'text-white'}`}>
       {/* Hero Section */}
       <div className="container mx-auto px-6 text-center mb-12">
-        <h1 className="text-4xl font-semibold text-gray-800">Get In Touch With Us</h1>
-        <p className="mt-4 text-gray-600 text-lg">
+        <h1 className="text-4xl font-semibold">Get In Touch With Us</h1>
+        <p className="mt-4 text-gray-500 text-lg">
           We are here to help. Reach out to us for any inquiries, feedback, or support!
         </p>
       </div>
@@ -42,7 +45,7 @@ const Support = () => {
 
       {/* Additional Information */}
       <div className="container mx-auto px-6 lg:px-8 mt-12">
-        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-6">Our Office Hours</h2>
+        <h2 className="text-3xl font-semibold text-center mb-6">Our Office Hours</h2>
         <div className="bg-white shadow-lg rounded-lg p-8">
           <p className="text-lg text-gray-600 text-center mb-4">We are available during the following hours:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
@@ -63,7 +66,7 @@ const Support = () => {
       </div>
 
       {/* Social Media Section */}
-      <div className="container mx-auto px-6 lg:px-8 mt-12">
+      {/* <div className="container mx-auto px-6 lg:px-8 mt-12">
         <h2 className="text-3xl font-semibold text-gray-800 text-center mb-6">Follow Us</h2>
         <div className="flex justify-center space-x-6">
           <a href="#" className="text-blue-500 hover:text-blue-700">
@@ -79,7 +82,7 @@ const Support = () => {
             <i className="fab fa-instagram text-3xl"></i>
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
     );
 };
