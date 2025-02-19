@@ -13,10 +13,13 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { AiOutlineDollar } from "react-icons/ai";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { toast } from 'react-toastify';
 
 const Details = ({ property }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
     // console.log(property)
 
     //get specific wishlist by searching user Email and property Id
@@ -24,7 +27,7 @@ const Details = ({ property }) => {
     const { data: wishlist = [] } = useQuery({
         queryKey: ['wishlist', user?.email, property?._id], // Add user.email and property._id as query key to ensure fresh data
         queryFn: async () => {
-            const res = await axiosSecure.get(`/wishlist`, {
+            const res = await axiosPublic.get(`/wishlist`, {
                 params: {
                     userEmail: user.email,
                     propertyId: property._id,
@@ -40,7 +43,7 @@ const Details = ({ property }) => {
     const { data: reviews = [], refetch } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/reviews/${property._id}`);
+            const res = await axiosPublic.get(`/reviews/${property._id}`);
             return res.data;
         }
     })
@@ -89,7 +92,8 @@ const Details = ({ property }) => {
     };
 
     const handleAddToWishlist = async (property) => {
-        // Destructure to remove _id and keep the rest of the properties
+        if(user?.email){
+            // Destructure to remove _id and keep the rest of the properties
         const { _id, ...wishlistProperty } = property;
         wishlistProperty.userEmail = user.email;
         wishlistProperty.propertyId = _id;  // Use _id as propertyId in wishlist
@@ -118,7 +122,19 @@ const Details = ({ property }) => {
                 text: "Failed to add the property to the wishlist. Please try again later."
             });
         }
+        }else{
+            toast.error("To add to Wishlist Login first")
+        }
+        
     };
+
+    const handleReviewButton= (property)=>{
+        if(user?.email){
+            openModal(property)
+        }else{
+            toast.error("To add a review, Login first")
+        }
+    }
 
 
 
@@ -229,7 +245,7 @@ const Details = ({ property }) => {
                     <p className="mt-6 text-gray-400 italic">Posted By: {property.agentName}</p>
                     <div className="my-6">
                         <div className="divider">Review</div>
-                        <button onClick={() => openModal(property)} className='bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100'>
+                        <button onClick={() =>handleReviewButton(property)} className='bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100'>
                             Add a Review
                         </button>
                         {/* Show All Reviews */}
