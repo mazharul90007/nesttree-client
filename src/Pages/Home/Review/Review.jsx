@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const Review = () => {
     const axiosPublic = useAxiosPublic()
+    const {dayTheme} = useAuth();
 
     const { data: reviews = [] } = useQuery({
         queryKey: ['reviews'],
@@ -24,13 +26,13 @@ const Review = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {
                     sortedReviews.slice(0,4).map(review => 
-                        <div key={review._id} className="shadow flex flex-col justify-between">
+                        <div key={review._id} className={`shadow flex flex-col justify-between p-2 rounded text-gray-500 ${!dayTheme && 'bg-gray-600 text-gray-200'}`}>
                             <img src={review.reviewerImage
                             } alt="Image" className="w-36 h-36 rounded-full mx-auto" />
-                            <h4 className="text-center text-2xl font-semibold text-gray-500">{review.reviewerName}</h4>
-                            <div className="p-1 flex flex-col justify-between flex-grow">
-                                <h3 className="text-xl font-semibold text-gray-600 text-center">{review.reviewProperty}</h3>
-                                <p className="mb-6 text-gray-500 text-center">{review.review}</p>
+                            <h4 className="text-center text-2xl font-semibold mb-4">{review.reviewerName}</h4>
+                            <div className="p-1 flex flex-col justify-between flex-grow ">
+                                <h3 className={`text-xl font-semibold  text-center ${dayTheme ? 'text-gray-600' : 'text-gray-100'}`}>{review.reviewProperty}</h3>
+                                <p className="mb-6  text-center">{review.review}</p>
                                 <p className=" text-xs text-gray-400 font-semibold mt-auto">{new Date(review.postedTime).toLocaleDateString()}</p>
                             </div>
                         </div>
