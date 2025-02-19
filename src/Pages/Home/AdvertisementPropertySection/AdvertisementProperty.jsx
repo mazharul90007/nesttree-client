@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { AiTwotoneSafetyCertificate } from "react-icons/ai";
 import { FaBath, FaBed, FaCar, FaHome } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const AdvertisementProperty = () => {
     const axiosPublic = useAxiosPublic();
+    const {dayTheme} = useAuth();
 
     const { data: properties = [] } = useQuery({
         queryKey: ['properties'],

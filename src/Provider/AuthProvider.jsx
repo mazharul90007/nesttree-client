@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     const axiosPublic = useAxiosPublic();
     const [amount, setAmount] = useState(0);
+    const [dayTheme, setDayTheme] = useState(true);
 
     //Create or Register a User
     const createUser = (email, password) => {
@@ -94,7 +95,9 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         googleSignUp,
         amount,
-        setAmount
+        setAmount,
+        dayTheme,
+        setDayTheme
 
 
 

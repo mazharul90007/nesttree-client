@@ -11,12 +11,12 @@ import useAuth from "../../../Hooks/useAuth";
 
 const LatestProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
-    const {user} = useAuth();
+    const {user, dayTheme} = useAuth();
     // console.log(verifiedProperties)
 
 
     return (
-        <div className="my-20">
+        <div className='my-20'>
 
             <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">Featured Properties - Explore Our Latest Listings</h2>
             <p className="w-10/12 text-center text-xl md:text-2xl font-medium mx-auto text-gray-500"> Discover the finest homes and investment opportunities with our most recent property additions.</p>
@@ -28,7 +28,7 @@ const LatestProperties = () => {
                     <div className=' flex flex-col gap-4'>
                         {
                             verifiedProperties.slice(0, 6).map(property =>
-                                <div key={property._id} className="border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative py-4">
+                                <div key={property._id} className={`border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative py-4 ${!dayTheme && 'bg-gray-600 shadow'} rounded `}>
                                     {/* Image Section */}
                                     <div className='absolute top-2 right-2 text-xl text-green-600'>
                                         <MdVerifiedUser />
@@ -49,19 +49,19 @@ const LatestProperties = () => {
                                     </div>
 
                                     {/* Content Section */}
-                                    <div className='space-y-1 p-2'>
+                                    <div className={`space-y-1 p-2 ${!dayTheme && 'text-white'}`}>
                                         <h2 className='text-xl font-semibold'>{property.title} <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
                                             {property.type}
                                         </span></h2>
 
-                                        <p className="text-sm text-gray-500">{property.location}</p>
+                                        <p className={`text-sm ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>{property.location}</p>
 
-                                        <div className="text-lg font-semibold italic text-gray-500 flex items-center gap-1">
+                                        <div className={`text-lg font-semibold italic flex items-center gap-1 ${dayTheme ? 'text-gray-500 ' : 'text-gray-200'}`}>
                                             <AiOutlineDollar />
                                             <p>{property.minPrice} - {property.maxPrice}</p>
                                         </div>
 
-                                        <div className="flex gap-4 mt-3 text-gray-500">
+                                        <div className={`flex gap-4 mt-3 ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
                                             <div className="flex items-center gap-1 text-sm">
                                                 <FaBed /> {property.bed} beds
                                             </div>
@@ -72,11 +72,11 @@ const LatestProperties = () => {
                                                 <FaCarAlt /> {property.parking} spaces
                                             </div>
                                         </div>
-                                        <div>
-                                            <p className='text-gray-400 text-xs italic mt-4'>Posted By:</p>
+                                        <div className={`${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
+                                            <p className='text-xs italic mt-4'>Posted By:</p>
                                             <div className="flex items-center gap-2">
                                                 <img src={property.agentImage} alt="Agent Image" className='w-8 h-8 rounded-full' />
-                                                <h4 className='text-gray-500 text-sm'>Agent: {property.agentName}</h4>
+                                                <h4 className='text-sm'>Agent: {property.agentName}</h4>
                                             </div>
                                         </div>
                                     </div>

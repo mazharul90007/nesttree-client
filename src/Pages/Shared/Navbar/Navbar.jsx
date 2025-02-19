@@ -3,11 +3,12 @@ import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import logo from "../../../assets/icons/logo.png"
+import { FaMoon, FaSun } from "react-icons/fa";
 
 
 const Navbar = () => {
 
-    const { user, logOut, setUser } = useAuth()
+    const { user, logOut, setUser, dayTheme, setDayTheme } = useAuth()
     const axiosSecure = useAxiosSecure()
 
     const { data: userProfile = [] } = useQuery({
@@ -37,14 +38,14 @@ const Navbar = () => {
 
         {
             user?.email && <>
-                
-                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={ userProfile.role === 'admin' ? '/dashboard/adminProfile' : userProfile.role === 'agent' ? '/dashboard/agentProfile' : '/dashboard/userProfile'}><li>Dashboard</li></NavLink>
+
+                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={userProfile.role === 'admin' ? '/dashboard/adminProfile' : userProfile.role === 'agent' ? '/dashboard/agentProfile' : '/dashboard/userProfile'}><li>Dashboard</li></NavLink>
             </>
         }
         <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/support'}><li>Contact Us</li></NavLink>
     </>
     return (
-        <div className="w-full absolute z-50 backdrop-blur-sm bg-white/10">
+        <div className="w-full backdrop-blur-sm bg-white/50">
             <div className="w-11/12 mx-auto navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -89,12 +90,16 @@ const Navbar = () => {
                             <button onClick={handleLogOut} className="btn bg-amber-50 border border-amber-600">LogOut</button>
                         </div>
                             :
-                            <div className="flex gap-4 items-center">
+                            <div className="flex gap-2 items-center">
                                 <Link to={'/signUp'}><button className="py-1 px-2 border border-primary rounded-full text-primary font-semibold">Register</button></Link>
+
                                 <Link to={'/login'}><button className="py-1 px-2 border border-primary font-semibold text-white rounded-full bg-primary">Sign in</button></Link>
+
+                                <button onClick={() => setDayTheme(!dayTheme)} className={`text-xl border-2 p-2 rounded-full shadow hover:scale-110 transition-transform transform ${dayTheme ? 'bg-white' : 'text-white bg-black'}`}>
+                                    {dayTheme ? <FaMoon className="text-black" /> : <FaSun />}
+                                </button>
                             </div>
                     }
-
                 </div>
             </div>
         </div>
