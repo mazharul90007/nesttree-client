@@ -17,7 +17,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { toast } from 'react-toastify';
 
 const Details = ({ property }) => {
-    const { user } = useAuth();
+    const { user, dayTheme } = useAuth();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     // console.log(property)
@@ -141,10 +141,10 @@ const Details = ({ property }) => {
 
     return (
         <div>
-            <div className="grid w-11/12 mx-auto">
+            <div className={`grid w-11/12 mx-auto ${!dayTheme && 'text-gray-400'}`}>
                 <div className="">
                     <div className="flex justify-center mb-6">
-                        <img src={property.image} alt="Property Image" className="h-[450px] w-auto rounded-lg" />
+                        <img src={property.image} alt="Property Image" className="h-[500px] w-full md:w-8/12 rounded-lg" />
                     </div>
                     {/* Verification Status and WishList */}
                     <div className="flex justify-between items-center">
@@ -182,7 +182,7 @@ const Details = ({ property }) => {
 
                     <div className="py-6 flex flex-wrap gap-2">
                         {/* Bed */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={bed} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Bed Rooms</p>
@@ -190,7 +190,7 @@ const Details = ({ property }) => {
                             </div>
                         </div>
                         {/* Bath */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={bath} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Bath Rooms</p>
@@ -198,7 +198,7 @@ const Details = ({ property }) => {
                             </div>
                         </div>
                         {/* Parking */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={parking} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Parking</p>
@@ -206,7 +206,7 @@ const Details = ({ property }) => {
                             </div>
                         </div>
                         {/* Living Room */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={living} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Living Room</p>
@@ -214,7 +214,7 @@ const Details = ({ property }) => {
                             </div>
                         </div>
                         {/* Dining Room */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={living} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Dining Room</p>
@@ -222,7 +222,7 @@ const Details = ({ property }) => {
                             </div>
                         </div>
                         {/* Built Year */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={calender} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Built Year</p>
@@ -230,7 +230,7 @@ const Details = ({ property }) => {
                             </div>
                         </div>
                         {/* Space */}
-                        <div className="flex items-center gap-1 border border-gray-400 w-fit p-1">
+                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                             <img src={space} alt="Bed" className="w-12 h-12" />
                             <div>
                                 <p>Space sqft</p>
@@ -255,9 +255,9 @@ const Details = ({ property }) => {
                                 reviews.map(review =>
                                     <div
                                         key={review._id}
-                                        className="flex items-center gap-4 mb-2 border-b border-gray-300"
+                                        className="flex items-center gap-4 mb-2 border-b border-gray-600"
                                     >
-                                        <div>
+                                        <div className="border-r border-gray-400 pr-4 mb-2">
                                             <img src={review.reviewerImage} alt="Reviewer" className="w-10 h-10 rounded" />
                                             <p>{review.reviewerName}</p>
                                         </div>
