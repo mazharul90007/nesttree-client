@@ -30,7 +30,7 @@ const Profile = () => {
                         Edit
                     </button>
                 </div>
-                <div className="text-gray-500 font-medium flex items-center space-x-4">
+                <div className="text-gray-500 font-medium flex flex-col md:flex-row items-center space-x-4">
                     <div className="flex items-center gap-1">
                         <LuMapPin />
                         <span>{userProfile?.address ? userProfile.address : 'Unknown'}</span>

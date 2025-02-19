@@ -3,7 +3,7 @@ import { TbHomePlus } from "react-icons/tb";
 import { IoPerson } from "react-icons/io5";
 import { HiCurrencyDollar } from "react-icons/hi";
 import { FaHouseCircleExclamation } from "react-icons/fa6";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
 import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
@@ -22,13 +22,15 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-12">
             {/* Dashboard SideBar */}
             <div className="md:col-span-3 md:min-h-screen bg-orange-100 px-4">
-                <div className="flex items-center justify-center gap-1 pt-4">
-                    <img className="h-8 w-8" src={logo} alt="Logo" />
-                    <p className="text-2xl text-primary font-bold"> NestTree</p>
-                </div>
+                <Link to={'/'}>
+                    <div className="flex items-center justify-center gap-1 pt-4">
+                        <img className="h-8 w-8" src={logo} alt="Logo" />
+                        <p className="text-2xl text-primary font-bold"> NestTree</p>
+                    </div>
+                </Link>
                 <div className="divider"></div>
                 {/* User Profile */}
-                <div className="flex flex-col items-center space-y-2 mb-4">
+                <div className="flex flex-col items-center space-y-2 mb-4 text-center">
                     <img src={user?.photoURL} alt="User Image" className="w-24 h-24 rounded-lg" />
                     <h3 className="text-2xl font-bold">{user?.displayName}</h3>
                     <p className="font-semibold text-gray-500">{user?.email}</p>
