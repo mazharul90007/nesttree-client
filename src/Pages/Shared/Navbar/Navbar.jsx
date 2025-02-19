@@ -33,10 +33,11 @@ const Navbar = () => {
 
     const links = <>
         <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/'}><li>Home</li></NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/allProperties'}><li>All Properties</li></NavLink>
+
         {
             user?.email && <>
-                <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={'/allProperties'}><li>All Properties</li></NavLink>
-
+                
                 <NavLink className={({ isActive }) => isActive ? 'text-primary font-bold underline' : 'hover:text-primary font-semibold hover:scale-105'} to={ userProfile.role === 'admin' ? '/dashboard/adminProfile' : userProfile.role === 'agent' ? '/dashboard/agentProfile' : '/dashboard/userProfile'}><li>Dashboard</li></NavLink>
             </>
         }
