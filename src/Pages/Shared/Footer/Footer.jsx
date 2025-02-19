@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Footer = () => {
-    const {user} = useAuth();
+    const {user, dayTheme} = useAuth();
     return (
         <div>
-            <footer className="bg-gray-800 text-white py-6">
+            <footer className={` text-white py-6 ${dayTheme ? 'bg-gray-800' : 'bg-gray-900'}`}>
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="text-center md:text-left mb-6 md:mb-0">
