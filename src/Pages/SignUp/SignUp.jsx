@@ -70,7 +70,7 @@ const Registration = () => {
                     <div className="md:col-span-5 bg-blue-200 h-full px-4 py-8 flex flex-col items-center justify-center">
                         <div className="flex items-center justify-center gap-1 mb-8">
                             <img className="h-12 w-12" src={logo} alt="Logo" />
-                            <p className="text-3xl text-primary font-bold hidden md:block"> NestTree</p>
+                            <p className="text-3xl text-primary font-bold"> NestTree</p>
                         </div>
                         <p className="text-center text-gray-600 font-medium">Login with social media to get quick access</p>
                         {/* Google Sign-in Button */}

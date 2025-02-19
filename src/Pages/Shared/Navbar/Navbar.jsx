@@ -91,9 +91,9 @@ const Navbar = () => {
                         </div>
                             :
                             <div className="flex gap-2 items-center">
-                                <Link to={'/signUp'}><button className="py-1 px-2 border border-primary rounded-full text-primary font-semibold">Register</button></Link>
+                                <Link to={'/signUp'}><button className="hidden md:block py-1 px-2 border border-primary rounded-lg text-primary font-semibold">Register</button></Link>
 
-                                <Link to={'/login'}><button className="py-1 px-2 border border-primary font-semibold text-white rounded-full bg-primary">Sign in</button></Link>
+                                <Link to={'/login'}><button className="py-1 px-2 border border-primary font-semibold text-white rounded-lg bg-primary">Sign in</button></Link>
 
                                 <button onClick={() => setDayTheme(!dayTheme)} className={`text-xl border-2 p-2 rounded-full shadow hover:scale-110 transition-transform transform ${dayTheme ? 'bg-white' : 'text-white bg-black'}`}>
                                     {dayTheme ? <FaMoon className="text-black" /> : <FaSun />}
