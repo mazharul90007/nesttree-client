@@ -5,7 +5,6 @@ import AdvertisementProperty from "./AdvertisementPropertySection/AdvertisementP
 import Facilities from "./Facilities/Facilities";
 import Review from "./Review/Review";
 import TeamMembers from "./TeamMembers/TeamMembers";
-import Support from "../Dashboard/Support/Support";
 
 
 
@@ -27,7 +26,6 @@ const Home = () => {
             </div>
             <TeamMembers></TeamMembers>
             <Review></Review>
-            <Support></Support>
         </div>
     );
 };
