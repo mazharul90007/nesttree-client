@@ -31,7 +31,7 @@ const Review = () => {
                             } alt="Image" className="w-36 h-36 rounded-full mx-auto" />
                             <h4 className="text-center text-2xl font-semibold mb-4">{review.reviewerName}</h4>
                             <div className="p-1 flex flex-col justify-between flex-grow ">
-                                <h3 className={`text-xl font-semibold  text-center ${dayTheme ? 'text-gray-600' : 'text-gray-100'}`}>{review.reviewProperty}</h3>
+                                <h3 className={`text-lg font-semibold  text-center ${dayTheme ? 'text-gray-600' : 'text-gray-100'}`}>{review.reviewProperty}</h3>
                                 <p className="mb-6  text-center">{review.review}</p>
                                 <p className=" text-xs text-gray-400 font-semibold mt-auto">{new Date(review.postedTime).toLocaleDateString()}</p>
                             </div>
