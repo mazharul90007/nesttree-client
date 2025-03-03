@@ -23,7 +23,7 @@ const Review = () => {
             <h2 className="text-4xl font-semibold text-center text-primary mb-2">Real Stories, Real Experiences</h2>
             <p className="text-center text-sm text-gray-500 italic font-md mb-16">***User Reviews***</p>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {
                     sortedReviews.slice(0,4).map(review => 
                         <div key={review._id} className={`shadow flex flex-col justify-between p-2 rounded text-gray-500 ${!dayTheme && 'bg-gray-600 text-gray-200'}`}>
