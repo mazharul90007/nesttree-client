@@ -11,7 +11,7 @@ import useAuth from "../../../Hooks/useAuth";
 
 const LatestProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
-    const {user, dayTheme} = useAuth();
+    const {dayTheme} = useAuth();
     // console.log(verifiedProperties)
 
 
@@ -85,7 +85,7 @@ const LatestProperties = () => {
                         }
                     </div>
                     <div className="flex justify-center">
-                        <Link to={ user?.email ? '/allProperties' : '/login'}>
+                        <Link to={ '/allProperties'}>
                             <button className="w-fit mt-10 py-1 px-2 border border-amber-500 rounded  bg-amber-50 shadow hover:scale-95 transition-transform transform">View All</button>
                         </Link>
                     </div>
