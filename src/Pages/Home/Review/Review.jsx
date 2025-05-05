@@ -64,8 +64,9 @@ const Review = () => {
         <section className="w-11/12 mx-auto mb-8 md:mb-16 lg:mb-20">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12">
-                    <p className="uppercase text-xl font-semibold text-center text-main mb-2">Testimonials</p>
-                    <h3 className={`uppercase text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 ${dayTheme ? "text-dark-primary" : "text-gray-700"}`}>What Our Customers Say</h3>
+                    <p className={`uppercase text-xl font-semibold text-center mb-2 ${!dayTheme ? 'text-gray-400' : 'text-gray-700'}`}>Testimonials</p>
+
+                    <h3 className={`uppercase text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 ${!dayTheme ? "text-gray-400" : "text-gray-700"}`}>What Our Customers Say</h3>
                 </div>
 
                 <motion.div
@@ -82,7 +83,7 @@ const Review = () => {
                             whileHover={{ y: -10 }}
                             className="flex"
                         >
-                            <div className={`px-6 py-16 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full w-full relative overflow-hidden group border ${dayTheme ? 'bg-dark-surface border-gray-400 shadow-gray-400' : 'bg-white border-gray-200'}`}>
+                            <div className={`px-6 py-16 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full w-full relative overflow-hidden group border ${!dayTheme ? 'bg-dark-surface border-gray-400 shadow-gray-400' : 'bg-white border-gray-200'}`}>
                                 {/* Decorative accent circle */}
                                 <div
                                     className={`absolute -top-16 -left-16 h-40 w-40 ${testimonial.accentColor} rounded-full opacity-10 transition-all duration-500 ease-in-out z-0 group-hover:scale-[12] group-hover:opacity-10 group-hover:-top-full group-hover:-left-full`}
@@ -102,7 +103,7 @@ const Review = () => {
                                         ))}
                                     </div>
                                     <FaQuoteLeft className="text-gray-300 text-3xl mb-4" />
-                                    <p className={`mb-6 flex-grow text-lg leading-relaxed ${dayTheme ? 'text-dark-primary' : 'text-gray-600'}`}>{testimonial.content}</p>
+                                    <p className={`mb-6 flex-grow text-lg leading-relaxed ${!dayTheme ? 'text-gray-400' : 'text-gray-600'}`}>{testimonial.content}</p>
                                     <div className="flex items-center mt-auto">
                                         <img
                                             src={testimonial.image}
@@ -110,7 +111,7 @@ const Review = () => {
                                             className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-white shadow"
                                         />
                                         <div>
-                                            <h4 className={`font-bold ${dayTheme ? 'text-dark-primary' : 'text-gray-800'}`}>{testimonial.name}</h4>
+                                            <h4 className={`font-bold ${!dayTheme ? 'text-gray-400' : 'text-gray-800'}`}>{testimonial.name}</h4>
                                             <p className="text-sm text-gray-500">{testimonial.role}</p>
                                         </div>
                                     </div>
