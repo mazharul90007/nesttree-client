@@ -87,7 +87,7 @@ const Navbar = () => {
                             <img src={user.photoURL}
                                 className="w-12 h-12 p-1 border-2 border-red-500 shadow-lg rounded-full"
                                 alt="" />
-                            <button onClick={handleLogOut} className="btn bg-amber-50 border border-amber-600">LogOut</button>
+                            <button onClick={handleLogOut} className="px-4 py-2 text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100">LogOut</button>
                         </div>
                             :
                             <div className="flex gap-2 items-center">
