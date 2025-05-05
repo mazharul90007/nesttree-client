@@ -92,46 +92,46 @@ const Details = ({ property }) => {
     };
 
     const handleAddToWishlist = async (property) => {
-        if(user?.email){
+        if (user?.email) {
             // Destructure to remove _id and keep the rest of the properties
-        const { _id, ...wishlistProperty } = property;
-        wishlistProperty.userEmail = user.email;
-        wishlistProperty.propertyId = _id;  // Use _id as propertyId in wishlist
+            const { _id, ...wishlistProperty } = property;
+            wishlistProperty.userEmail = user.email;
+            wishlistProperty.propertyId = _id;  // Use _id as propertyId in wishlist
 
-        // console.log(wishlistProperty);
+            // console.log(wishlistProperty);
 
-        try {
-            const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);
-            refetch();
-            if (wishlistRes.data.insertedId) {
-                
-                // Show success popup
+            try {
+                const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);
+                refetch();
+                if (wishlistRes.data.insertedId) {
+
+                    // Show success popup
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: 'The Property has been added to Wishlist',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            } catch (error) {
+                console.error("Error adding to wishlist:", error);
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: 'The Property has been added to Wishlist',
-                    showConfirmButton: false,
-                    timer: 1500
+                    icon: "error",
+                    title: "Oops!",
+                    text: "Failed to add the property to the wishlist. Please try again later."
                 });
             }
-        } catch (error) {
-            console.error("Error adding to wishlist:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Oops!",
-                text: "Failed to add the property to the wishlist. Please try again later."
-            });
-        }
-        }else{
+        } else {
             toast.error("To add to Wishlist Login first")
         }
-        
+
     };
 
-    const handleReviewButton= (property)=>{
-        if(user?.email){
+    const handleReviewButton = (property) => {
+        if (user?.email) {
             openModal(property)
-        }else{
+        } else {
             toast.error("To add a review, Login first")
         }
     }
@@ -143,109 +143,117 @@ const Details = ({ property }) => {
         <div>
             <div className={`grid w-11/12 mx-auto ${!dayTheme && 'text-gray-400'}`}>
                 <div className="">
-                    <div className="flex justify-center mb-6">
-                        <img src={property.image} alt="Property Image" className="h-[500px] w-full md:w-8/12 rounded-lg" />
-                    </div>
-                    {/* Verification Status and WishList */}
-                    <div className="flex justify-between items-center">
-                        <div className="text-green-600 flex items-center gap-1">
-                            <FaCheckCircle /> <span>Verified</span>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+                        {/* left side */}
+                        <div className="flex justify-center w-full lg:col-span-6">
+                            <img src={property.image} alt="Property Image" className="h-[500px] w-full rounded-lg" />
                         </div>
-                        <div>
-                            {
-                                wishlist?.userEmail === user?.email && wishlist?.propertyId === property._id
-                                    ?
-                                    <p className="text-green-600 border p-1 border-green-600 rounded">You have already added this Property in your Wishlist</p>
-                                    :
-                                    <button
-                                        onClick={() => handleAddToWishlist(property)}
-                                        // aria-label="Add to Wishlist"
-                                        className="bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100"
-                                    >
-                                        <FaRegHeart /> Add to Wishlist
-                                    </button>
-                            }
+                        {/* Right Side detais */}
+                        <div className="lg:col-span-6">
+                            {/* Verification Status and WishList */}
+                            <div className="flex justify-between items-center">
+                                <div className="text-green-600 flex items-center gap-1">
+                                    <FaCheckCircle /> <span>Verified</span>
+                                </div>
+                                <div>
+                                    {
+                                        wishlist?.userEmail === user?.email && wishlist?.propertyId === property._id
+                                            ?
+                                            <p className="text-green-600 border p-1 border-green-600 rounded">You have already added this Property in your Wishlist</p>
+                                            :
+                                            <button
+                                                onClick={() => handleAddToWishlist(property)}
+                                                // aria-label="Add to Wishlist"
+                                                className="bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100"
+                                            >
+                                                <FaRegHeart /> Add to Wishlist
+                                            </button>
+                                    }
 
 
-                        </div>
-                    </div>
-                    {/* Property Title */}
-                    <h3 className="text-3xl font-semibold mt-6">{property.title}</h3>
-                    {/* Price */}
-                    <div className="text-xl font-semibold italic text-gray-500 flex items-center gap-1">
-                        <AiOutlineDollar />
-                        <p>{property.minPrice} - {property.maxPrice}</p>
-                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                {/* Property Title */}
+                                <h3 className="text-3xl font-semibold mt-6">{property.title}</h3>
+                                {/* Price */}
+                                <div className="text-xl font-semibold italic text-gray-500 flex items-center gap-1">
+                                    <AiOutlineDollar />
+                                    <p>{property.minPrice} - {property.maxPrice}</p>
+                                </div>
 
-                    {/* Location */}
-                    <p>{property.location}</p>
+                                {/* Location */}
+                                <p>{property.location}</p>
 
-                    <div className="py-6 flex flex-wrap gap-2">
-                        {/* Bed */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={bed} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Bed Rooms</p>
-                                <p className="text-4xl font-bold text-center">{property.bed}</p>
-                            </div>
-                        </div>
-                        {/* Bath */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={bath} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Bath Rooms</p>
-                                <p className="text-4xl font-bold text-center">{property.bath}</p>
-                            </div>
-                        </div>
-                        {/* Parking */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={parking} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Parking</p>
-                                <p className="text-4xl font-bold text-center">{property.parking}</p>
-                            </div>
-                        </div>
-                        {/* Living Room */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={living} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Living Room</p>
-                                <p className="text-4xl font-bold text-center">{property.livingRoom}</p>
-                            </div>
-                        </div>
-                        {/* Dining Room */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={living} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Dining Room</p>
-                                <p className="text-4xl font-bold text-center">{property.diningRoom}</p>
-                            </div>
-                        </div>
-                        {/* Built Year */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={calender} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Built Year</p>
-                                <p className="text-4xl font-bold text-center">{property.builtYear}</p>
-                            </div>
-                        </div>
-                        {/* Space */}
-                        <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
-                            <img src={space} alt="Bed" className="w-12 h-12" />
-                            <div>
-                                <p>Space sqft</p>
-                                <p className="text-4xl font-bold text-center">{property.space}</p>
+                                <div className="py-6 flex flex-wrap gap-2">
+                                    {/* Bed */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={bed} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Bed Rooms</p>
+                                            <p className="text-4xl font-bold text-center">{property.bed}</p>
+                                        </div>
+                                    </div>
+                                    {/* Bath */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={bath} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Bath Rooms</p>
+                                            <p className="text-4xl font-bold text-center">{property.bath}</p>
+                                        </div>
+                                    </div>
+                                    {/* Parking */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={parking} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Parking</p>
+                                            <p className="text-4xl font-bold text-center">{property.parking}</p>
+                                        </div>
+                                    </div>
+                                    {/* Living Room */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={living} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Living Room</p>
+                                            <p className="text-4xl font-bold text-center">{property.livingRoom}</p>
+                                        </div>
+                                    </div>
+                                    {/* Dining Room */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={living} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Dining Room</p>
+                                            <p className="text-4xl font-bold text-center">{property.diningRoom}</p>
+                                        </div>
+                                    </div>
+                                    {/* Built Year */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={calender} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Built Year</p>
+                                            <p className="text-4xl font-bold text-center">{property.builtYear}</p>
+                                        </div>
+                                    </div>
+                                    {/* Space */}
+                                    <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
+                                        <img src={space} alt="Bed" className="w-12 h-12" />
+                                        <div>
+                                            <p>Space sqft</p>
+                                            <p className="text-4xl font-bold text-center">{property.space}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Property Details */}
-                    <p>Details: <span className="text-gray-500">{property.propertyDetails}</span></p>
+                    <p className="text-xl font-semibold">Details: <span className="text-gray-500 text-lg font-normal">{property.propertyDetails}</span></p>
                     {/* Agent */}
                     <p className="mt-6 text-gray-400 italic">Posted By: {property.agentName}</p>
                     <div className="my-6">
                         <div className="divider">Review</div>
-                        <button onClick={() =>handleReviewButton(property)} className='bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100'>
+                        <button onClick={() => handleReviewButton(property)} className='bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100'>
                             Add a Review
                         </button>
                         {/* Show All Reviews */}
@@ -270,7 +278,7 @@ const Details = ({ property }) => {
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             {/* Show Modal */}
             <dialog id="addReview" className="modal" aria-modal="true">
