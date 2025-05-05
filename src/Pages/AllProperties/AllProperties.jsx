@@ -13,7 +13,7 @@ const AllProperties = () => {
     const [verifiedProperties] = useVerifiedProperties();
     const [searchProperty, setSearchProperty] = useState("");
     const [sortOrder, setSortOrder] = useState(""); // Track sorting order
-    const {dayTheme} = useAuth();
+    const { dayTheme } = useAuth();
 
     // Handle sorting
     const handleSort = (order) => {
@@ -93,61 +93,76 @@ const AllProperties = () => {
                 <div className='grid md:grid-cols-12 my-16'>
                     {/* Property Cards */}
                     <div className='md:col-span-9 flex flex-col gap-4'>
-                        {filteredProperties.map(property => (
-                            <div key={property._id} className={`border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative py-4 ${!dayTheme && 'bg-gray-600 shadow'} rounded `}>
-                            {/* Image Section */}
-                            <div className='absolute top-2 right-2 text-xl text-green-600'>
-                                <MdVerifiedUser />
+                        {filteredProperties.length === 0 ? (
+                            <div className={`text-center py-10 ${!dayTheme ? 'text-white' : 'text-gray-700'}`}>
+                                <h2 className="text-2xl font-semibold">There are no properties matching your search</h2>
+                                <p className="mt-2">Search new area</p>
+                                {searchProperty && (
+                                    <button 
+                                        onClick={() => setSearchProperty("")}
+                                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                                    >
+                                        Clear Search
+                                    </button>
+                                )}
                             </div>
+                        ) : (
+                            filteredProperties.map(property => (
+                                <div key={property._id} className={`border-b border-gray-400 flex flex-col md:flex-row gap-4 items-center w-full relative py-4 ${!dayTheme && 'bg-gray-600 shadow'} rounded `}>
+                                    {/* Image Section */}
+                                    <div className='absolute top-2 right-2 text-xl text-green-600'>
+                                        <MdVerifiedUser />
+                                    </div>
 
-                            <Link to={`propertyDetails/${property._id}`}>
-                                <button className='absolute bottom-2 right-2 text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
-                                    Details
-                                </button>
-                            </Link>
+                                    <Link to={`propertyDetails/${property._id}`}>
+                                        <button className='absolute bottom-2 right-2 text-xs text-green-500 p-1 border border-green-500 rounded-md font-medium shadow hover:scale-95 transform transition-transform'>
+                                            Details
+                                        </button>
+                                    </Link>
 
-                            <div className=''>
-                                <img
-                                    src={property.image}
-                                    alt="Property"
-                                    className="h-56 w-64 rounded-md"
-                                />
-                            </div>
+                                    <div className=''>
+                                        <img
+                                            src={property.image}
+                                            alt="Property"
+                                            className="h-56 w-64 rounded-md"
+                                        />
+                                    </div>
 
-                            {/* Content Section */}
-                            <div className={`space-y-1 p-2 ${!dayTheme && 'text-white'}`}>
-                                <h2 className='text-xl font-semibold'>{property.title} <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
-                                    {property.type}
-                                </span></h2>
+                                    {/* Content Section */}
+                                    <div className={`space-y-1 p-2 ${!dayTheme && 'text-white'}`}>
+                                        <h2 className='text-xl font-semibold'>{property.title} <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
+                                            {property.type}
+                                        </span></h2>
 
-                                <p className={`text-sm ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>{property.location}</p>
+                                        <p className={`text-sm ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>{property.location}</p>
 
-                                <div className={`text-lg font-semibold italic flex items-center gap-1 ${dayTheme ? 'text-gray-500 ' : 'text-gray-200'}`}>
-                                    <AiOutlineDollar />
-                                    <p>{property.minPrice} - {property.maxPrice}</p>
+                                        <div className={`text-lg font-semibold italic flex items-center gap-1 ${dayTheme ? 'text-gray-500 ' : 'text-gray-200'}`}>
+                                            <AiOutlineDollar />
+                                            <p>{property.minPrice} - {property.maxPrice}</p>
+                                        </div>
+
+                                        <div className={`flex gap-4 mt-3 ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
+                                            <div className="flex items-center gap-1 text-sm">
+                                                <FaBed /> {property.bed} beds
+                                            </div>
+                                            <div className="flex items-center gap-1 text-sm">
+                                                <FaBath /> {property.bath} baths
+                                            </div>
+                                            <div className="flex items-center gap-1 text-sm">
+                                                <FaCarAlt /> {property.parking} spaces
+                                            </div>
+                                        </div>
+                                        <div className={`${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
+                                            <p className='text-xs italic mt-4'>Posted By:</p>
+                                            <div className="flex items-center gap-2">
+                                                <img src={property.agentImage} alt="Agent Image" className='w-8 h-8 rounded-full' />
+                                                <h4 className='text-sm'>Agent: {property.agentName}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className={`flex gap-4 mt-3 ${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
-                                    <div className="flex items-center gap-1 text-sm">
-                                        <FaBed /> {property.bed} beds
-                                    </div>
-                                    <div className="flex items-center gap-1 text-sm">
-                                        <FaBath /> {property.bath} baths
-                                    </div>
-                                    <div className="flex items-center gap-1 text-sm">
-                                        <FaCarAlt /> {property.parking} spaces
-                                    </div>
-                                </div>
-                                <div className={`${dayTheme ? 'text-gray-500' : 'text-gray-200'}`}>
-                                    <p className='text-xs italic mt-4'>Posted By:</p>
-                                    <div className="flex items-center gap-2">
-                                        <img src={property.agentImage} alt="Agent Image" className='w-8 h-8 rounded-full' />
-                                        <h4 className='text-sm'>Agent: {property.agentName}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        ))}
+                            ))
+                        )}
                     </div>
 
                     {/* Ad Section */}
