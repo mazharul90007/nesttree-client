@@ -69,7 +69,7 @@ const AllProperties = () => {
                 <div className='mt-4 mb-2 relative'>
                     {/* Sort Button with DaisyUI Dropdown */}
                     <div className="dropdown dropdown-right">
-                        <button tabIndex={0} className="py-2 px-3 border border-amber-500 rounded flex mx-auto shadow text-gray-500 bg-amber-50 hover:scale-95 transition-transform transform duration-300">
+                        <button tabIndex={0} className="mt-4 px-4 py-2 text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100">
                             Sort by Price
                         </button>
                         <ul
@@ -100,7 +100,7 @@ const AllProperties = () => {
                                 {searchProperty && (
                                     <button 
                                         onClick={() => setSearchProperty("")}
-                                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                                        className="mt-4 px-4 py-2 text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center mx-auto gap-1 bg-orange-100"
                                     >
                                         Clear Search
                                     </button>
