@@ -66,7 +66,7 @@ const Review = () => {
                 <div className="text-center mb-12">
                     <p className={`uppercase text-xl font-semibold text-center mb-2 ${!dayTheme ? 'text-gray-400' : 'text-gray-700'}`}>Testimonials</p>
 
-                    <h3 className={`uppercase text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 ${!dayTheme ? "text-gray-400" : "text-gray-700"}`}>What Our Customers Say</h3>
+                    <h3 className={`uppercase text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 ${!dayTheme ? "text-gray-400" : "text-primary"}`}>What Our Customers Say</h3>
                 </div>
 
                 <motion.div
