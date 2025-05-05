@@ -77,7 +77,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className=" flex flex-wrap gap-3 menu-horizontal px-1 text-lg">
+                    <ul className=" flex flex-wrap gap-4 menu-horizontal px-1 text-lg">
                         {links}
                     </ul>
                 </div>
