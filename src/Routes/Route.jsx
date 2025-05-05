@@ -22,7 +22,7 @@ import ManageReviews from "../Pages/Dashboard/ManageReviews/ManageReviews";
 import ManageRequestProperty from "../Pages/Dashboard/ManageRequestedProperty/ManageRequestProperty";
 import PropertyBought from "../Pages/Dashboard/PropertyBought/PropertyBought";
 import Payment from "../Pages/Dashboard/Payment/Payment";
-import Support from "../Pages/Dashboard/Support/Support";
+import Support from "../Pages/Support/Support";
 import MySoldProperties from "../Pages/Dashboard/MySoldProperties/MySoldProperties";
 import AdvertiseProperty from "../Pages/Dashboard/AdvertiseProperty/AdvertiseProperty";
 
