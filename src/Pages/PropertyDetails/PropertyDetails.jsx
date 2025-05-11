@@ -7,7 +7,7 @@ const PropertyDetails = () => {
    const property = useLoaderData(); 
 
     return (
-        <div className="py-8">
+        <div className="py-4">
             <Details property={property}></Details>
         </div>
     );

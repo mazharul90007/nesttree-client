@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaArrowRight, FaBan, FaCheckCircle } from "react-icons/fa";
 import bed from '../../assets/icons/bed.png'
 import bath from '../../assets/icons/bath.png'
 import parking from '../../assets/icons/parking.png'
 import living from '../../assets/icons/living.png'
 import calender from '../../assets/icons/calender.png'
-import write from '../../assets/icons/write.png'
 import space from '../../assets/icons/space.png'
-import { FaRegHeart } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -15,6 +13,8 @@ import { useQuery } from "@tanstack/react-query";
 import { AiOutlineDollar } from "react-icons/ai";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { toast } from 'react-toastify';
+import { IoCall, IoChatbubbles, IoStar, IoWarning } from "react-icons/io5";
+import { GoDot } from "react-icons/go";
 
 const Details = ({ property }) => {
     const { user, dayTheme } = useAuth();
@@ -38,59 +38,6 @@ const Details = ({ property }) => {
         },
     });
 
-
-    //get Reviews
-    const { data: reviews = [], refetch } = useQuery({
-        queryKey: ['reviews'],
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/reviews/${property._id}`);
-            return res.data;
-        }
-    })
-
-    const openModal = () => {
-        document.getElementById('addReview').showModal()
-    };
-
-    const closeModal = () => {
-        document.getElementById('addReview').close();
-    };
-
-
-    const handleReview = async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const review = form.review.value;
-        const reviewPropertyId = property._id;
-        const reviewerName = user.displayName;
-        const reviewerImage = user.photoURL;
-        const reviewProperty = property.title;
-        const reviewerEmail = user.email;
-        const postedTime = Date.now();
-        const agentName = property.agentName;
-        const reviewInfo = { review, reviewPropertyId, reviewerName, reviewerImage, reviewProperty, reviewerEmail, postedTime, agentName }
-
-        // console.log(reviewInfo);
-
-        //Add review to the server
-        const reviewRes = await axiosSecure.post('/reviews', reviewInfo);
-        // console.log(reviewRes.data)
-        if (reviewRes.data.insertedId) {
-            //show success popup
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: 'Your Review has been added',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
-
-        // Make all the field empty and close the modal
-        form.review.value = '';
-        closeModal();
-    };
-
     const handleAddToWishlist = async (property) => {
         if (user?.email) {
             // Destructure to remove _id and keep the rest of the properties
@@ -102,7 +49,6 @@ const Details = ({ property }) => {
 
             try {
                 const wishlistRes = await axiosSecure.post('/wishlist', wishlistProperty);
-                refetch();
                 if (wishlistRes.data.insertedId) {
 
                     // Show success popup
@@ -128,30 +74,20 @@ const Details = ({ property }) => {
 
     };
 
-    const handleReviewButton = (property) => {
-        if (user?.email) {
-            openModal(property)
-        } else {
-            toast.error("To add a review, Login first")
-        }
-    }
-
-
-
-
     return (
         <div>
             <div className={`grid w-11/12 mx-auto ${!dayTheme && 'text-gray-400'}`}>
                 <div className="">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-                        {/* left side */}
-                        <div className="flex justify-center w-full lg:col-span-6">
-                            <img src={property.image} alt="Property Image" className="h-[500px] w-full rounded-lg" />
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center mb-6">
+                        <div className="col-span-9">
+                            {/* Property Title */}
+                            <h3 className="text-3xl font-semibold">{property.title}</h3>
+                            {/* Location */}
+                            <p>{property.location}</p>
                         </div>
-                        {/* Right Side detais */}
-                        <div className="lg:col-span-6">
+                        <div className="col-span-3">
                             {/* Verification Status and WishList */}
-                            <div className="flex justify-between items-center">
+                            <div className="flex gap-4 items-center justify-end">
                                 <div className="text-green-600 flex items-center gap-1">
                                     <FaCheckCircle /> <span>Verified</span>
                                 </div>
@@ -164,28 +100,28 @@ const Details = ({ property }) => {
                                             <button
                                                 onClick={() => handleAddToWishlist(property)}
                                                 // aria-label="Add to Wishlist"
-                                                className="bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100"
+                                                className="font-medium flex items-center gap-1 text-gray-600"
                                             >
-                                                <FaRegHeart /> Add to Wishlist
+                                                <IoStar /> Save Ad
                                             </button>
                                     }
-
-
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-6">
+                        {/* Left side */}
+                        <div className="flex flex-col w-full lg:col-span-9">
+                            {/* Image */}
+                            <img src={property.image} alt="Property Image" className="h-[550px] w-full rounded-lg" />
+                            {/* Price */}
+                            <div className="text-xl md:text-2xl font-semibold text-primary flex items-center gap-1 justify-end my-2">
+                                <AiOutlineDollar />
+                                <p>TK {property.minPrice} / Month</p>
+                            </div>
+                            {/* Property Details */}
                             <div>
-                                {/* Property Title */}
-                                <h3 className="text-3xl font-semibold mt-6">{property.title}</h3>
-                                {/* Price */}
-                                <div className="text-xl font-semibold italic text-gray-500 flex items-center gap-1">
-                                    <AiOutlineDollar />
-                                    <p>{property.minPrice} - {property.maxPrice}</p>
-                                </div>
-
-                                {/* Location */}
-                                <p>{property.location}</p>
-
-                                <div className="py-6 flex flex-wrap gap-2">
+                                <div className="mb-6 flex flex-wrap gap-2 bg-white p-4 rounded-md shadow">
                                     {/* Bed */}
                                     <div className={`flex items-center gap-1 border border-gray-400 w-fit p-1 rounded ${!dayTheme && 'bg-gray-700'}`}>
                                         <img src={bed} alt="Bed" className="w-12 h-12" />
@@ -243,64 +179,63 @@ const Details = ({ property }) => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="bg-white rounded-md shadow-md p-4">
+                                    <p className="text-xl font-semibold">Property Description: <br /><span className="text-gray-500 text-lg font-normal">{property.propertyDetails}</span></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Property Details */}
-                    <p className="text-xl font-semibold">Details: <span className="text-gray-500 text-lg font-normal">{property.propertyDetails}</span></p>
-                    {/* Agent */}
-                    <p className="mt-6 text-gray-400 italic">Posted By: {property.agentName}</p>
-                    <div className="my-6">
-                        <div className="divider">Review</div>
-                        <button onClick={() => handleReviewButton(property)} className='bottom-2 right-2 text-sm text-primary p-1 border border-primary rounded-md font-medium shadow hover:scale-95 transform transition-transform flex items-center gap-1 bg-orange-100'>
-                            Add a Review
-                        </button>
-                        {/* Show All Reviews */}
-                        <div className="mt-4">
-                            <p className="mb-3 text-xl italic">Total Review: {reviews.length}</p>
-                            {
-                                reviews.map(review =>
-                                    <div
-                                        key={review._id}
-                                        className="flex items-center gap-4 mb-2 border-b border-gray-600"
-                                    >
-                                        <div className="border-r border-gray-400 pr-4 mb-2">
-                                            <img src={review.reviewerImage} alt="Reviewer" className="w-10 h-10 rounded" />
-                                            <p>{review.reviewerName}</p>
-                                        </div>
-                                        <div>
-                                            <p>{review.review}</p>
-                                        </div>
+                        {/* Right Side detais */}
+                        <div className="lg:col-span-3 flex flex-col flex-grow">
+                            <div className="border border-gray-300 rounded">
+                                {/* Agent */}
+                                <div className="p-3">
+                                    <p className="mt-2 text-gray-500 italic">Posted By: <span className="text-gray-600 font-bold">{property.agentName}</span></p>
+                                </div>
+                                <div className="flex gap-3 items-start p-3 border-y border-gray-300">
+                                    <div className="p-1 border border-primary rounded-full text-primary">
+                                        <IoCall />
                                     </div>
-                                )
-                            }
+                                    <div>
+                                        <p className="font-bold text-gray-600">Call Owner</p>
+                                        <p className="font-bold text-gray-600 py-0.5 px-2 border border-gray-400 rounded mt-1 bg-gray-50">{property?.contact ? property.contact : "Invalid"}</p>
+                                    </div>
+                                </div>
+                                <button className="flex gap-3 items-start p-3 cursor-pointer w-full hover:bg-gray-300 transition-transform duration-300">
+                                    <div className="p-1 border border-primary rounded-full text-primary">
+                                        <IoChatbubbles />
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-gray-600">Chat</p>
+                                    </div>
+                                </button>
+                            </div>
+                            {/* Safety Warning */}
+                            <div className="mt-auto bg-white p-4 rounded-md shadow-md">
+                                <div className="text-lg font-semibold flex items-center gap-2 mb-3">
+                                    <IoWarning className="text-primary"/>
+                                    <p><span className="text-primary">Warning</span>: Avoid Online Scams</p>
+                                </div>
+                                <div className="mb-2">
+                                    <p className="flex items-start gap-1"><span><GoDot /></span>Don’t go to unfamiliar places alone</p>
+
+                                    <p className="flex items-start gap-1"><span><GoDot /></span>Don’t make full payment to 3rd parties</p>
+                                </div>
+                                <button className="cursor-pointer text-blue-500 flex gap-2 items-center">See all safety tips <span><FaArrowRight /></span></button>
+                            </div>
+
                         </div>
+                    </div>
+                    {/* Report */}
+                    <div className="py-4 border-t border-gray-300">
+                        <button className="flex gap-2 items-center text-lg text-gray-600 mx-auto w-fit cursor-pointer">
+                            <FaBan />
+                            <p>Report this ad</p>
+                        </button>
                     </div>
                 </div>
 
             </div>
-            {/* Show Modal */}
-            <dialog id="addReview" className="modal" aria-modal="true">
-                <div className="modal-box">
-                    <h3 className="font-bold text-xl text-center">Type Your Review</h3>
-                    <img src={write} alt="review" className="w-16 h-16 mx-auto" />
-                    <form onSubmit={handleReview} method="dialog" className="w-full">
-                        <textarea
-                            className="textarea textarea-bordered w-full"
-                            placeholder="Review"
-                            name="review"
-                            required
-                        ></textarea>
-                        <button className="btn btn-sm border border-green-500 mt-1 text-green-700">Post</button>
-                    </form>
-                    <div className="flex justify-end">
-                        <button onClick={() => closeModal()} className="btn btn-sm border border-red-600 text-primary">X</button>
-                    </div>
-                </div>
-            </dialog>
-
-
         </div>
     );
 };
