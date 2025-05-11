@@ -84,7 +84,7 @@ const LatestProperties = () => {
                                             </div>
 
                                             {/* Content Section */}
-                                            <div className={`space-y-1 p-2 ${!dayTheme && 'text-white'}`}>
+                                            <div className={`space-y-1 p-2 mt-3 ${!dayTheme && 'text-white'}`}>
                                                 <h2 className='text-xl font-semibold'>{property.title} <span className="bg-orange-300 text-orange-700 text-xs font-semibold px-2 py-1 rounded">
                                                     {property.type}
                                                 </span></h2>

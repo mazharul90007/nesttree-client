@@ -6,7 +6,7 @@ import useAuth from "../../../Hooks/useAuth";
 const Facilities = () => {
     const {dayTheme} = useAuth();
     return (
-        <div className={`my-16 py-16 w-11/12 mx-auto rounded-lg ${dayTheme ? 'bg-[#F0E2D5]' : 'bg-gray-600 text-gray-200'}`}>
+        <div className={`mb-8 md:mb-16 lg:mb-20 py-16 w-11/12 mx-auto rounded-lg ${dayTheme ? 'bg-[#F0E2D5]' : 'bg-gray-600 text-gray-200'}`}>
             <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">How Nesttree Simplifies Property Buying</h2>
             <div className="grid md:grid-cols-3 gap-6">
                 {/* column1 */}

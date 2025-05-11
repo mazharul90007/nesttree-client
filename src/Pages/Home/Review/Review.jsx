@@ -61,8 +61,8 @@ const Review = () => {
     };
 
     return (
-        <section className="w-11/12 mx-auto mb-8 md:mb-16 lg:mb-20">
-            <div className="max-w-7xl mx-auto">
+        <section className="mb-8 md:mb-16 lg:mb-20">
+            <div className="w-11/12 mx-auto">
                 <div className="text-center mb-12">
                     <p className={`uppercase text-xl font-semibold text-center mb-2 ${!dayTheme ? 'text-gray-400' : 'text-gray-700'}`}>Testimonials</p>
 

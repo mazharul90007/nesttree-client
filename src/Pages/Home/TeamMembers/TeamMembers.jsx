@@ -3,7 +3,7 @@ import teamMembers from "../../../../public/teamMembers.json"
 const TeamMembers = () => {
     return (
         <div>
-            <section className="py-8 mb-8">
+            <section className="py-8 mb-8 md:mb-16 lg:mb-20">
                 <div className="max-w-6xl mx-auto text-center">
                     <h4 className="text-gray-500 uppercase tracking-widest text-sm">Who We Are</h4>
                     <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">Top Real Estate Agency in Nesttree</h2>

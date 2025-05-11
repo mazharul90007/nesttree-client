@@ -19,7 +19,7 @@ const AdvertisementProperty = () => {
     });
 
     return (
-        <div className="my-16">
+        <div className="mb-8 md:mb-16 lg:mb-20">
             <h2 className="text-3xl md:text-4xl font-semibold text-center text-primary mb-2">Prime Properties to Explore</h2>
             <p className="text-xs text-gray-400 italic text-center mt-2">Advertisement</p>
             <div className="divider text-3xl"><FaHome /></div>
