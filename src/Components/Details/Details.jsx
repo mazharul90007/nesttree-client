@@ -22,10 +22,8 @@ const Details = ({ property }) => {
     const axiosPublic = useAxiosPublic();
     // console.log(property)
 
-    //get specific wishlist by searching user Email and property Id
-
     const { data: wishlist = [] } = useQuery({
-        queryKey: ['wishlist', user?.email, property?._id], // Add user.email and property._id as query key to ensure fresh data
+        queryKey: ['wishlist', user?.email, property?._id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/wishlist`, {
                 params: {
@@ -40,10 +38,9 @@ const Details = ({ property }) => {
 
     const handleAddToWishlist = async (property) => {
         if (user?.email) {
-            // Destructure to remove _id and keep the rest of the properties
             const { _id, ...wishlistProperty } = property;
             wishlistProperty.userEmail = user.email;
-            wishlistProperty.propertyId = _id;  // Use _id as propertyId in wishlist
+            wishlistProperty.propertyId = _id;  
 
             // console.log(wishlistProperty);
 
@@ -99,7 +96,6 @@ const Details = ({ property }) => {
                                             :
                                             <button
                                                 onClick={() => handleAddToWishlist(property)}
-                                                // aria-label="Add to Wishlist"
                                                 className="font-medium flex items-center gap-1 text-gray-600"
                                             >
                                                 <IoStar /> Save Ad
